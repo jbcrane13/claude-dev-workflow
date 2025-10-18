@@ -135,8 +135,8 @@ cp "$WORKFLOW_ROOT/tracking/screenshots/README.md" "$PROJECT_PATH/tracking/scree
 echo "Copying documentation..."
 cp "$WORKFLOW_ROOT/docs/"*.md "$PROJECT_PATH/docs/"
 
-echo "Creating symlink to master workflow..."
-ln -s "$WORKFLOW_ROOT/claude.md" "$PROJECT_PATH/docs/claude.md"
+echo "Copying claude.md to project root..."
+cp "$WORKFLOW_ROOT/claude.md" "$PROJECT_PATH/claude.md"
 
 echo "Copying .gitignore..."
 cp "$WORKFLOW_ROOT/templates/ios/.gitignore" "$PROJECT_PATH/.gitignore"
@@ -383,7 +383,7 @@ iOS application built using the Claude Dev Workflow.
 
 ### First Steps
 
-1. Review `docs/claude.md` for workflow overview
+1. Review `claude.md` (project root) for workflow overview
 2. Check `tracking/phase-status.md` for current phase
 3. Read `docs/ios-development.md` for iOS standards
 4. Follow phase-based development process
@@ -395,6 +395,8 @@ iOS application built using the Claude Dev Workflow.
 ```
 ${PROJECT_NAME}/
 ├── ${PROJECT_NAME}.xcodeproj
+├── claude.md                   # Master workflow (PROJECT ROOT)
+├── README.md
 ├── ${PROJECT_NAME}/
 │   ├── App/                    # Application entry point
 │   ├── Models/                 # SwiftData models
@@ -410,7 +412,11 @@ ${PROJECT_NAME}/
 │   ├── phase-status.md
 │   ├── mock-data-registry.md
 │   └── screenshots/
-└── docs/                       # Documentation
+└── docs/                       # Detailed documentation
+    ├── PRD.md
+    ├── ios-development.md
+    ├── project-management.md
+    └── ...
 ```
 
 ---
@@ -478,7 +484,7 @@ Required for every completed feature!
 
 ## 📚 Documentation
 
-- [Master Workflow](docs/claude.md) - Complete workflow reference
+- [Master Workflow](claude.md) - Complete workflow reference (project root)
 - [iOS Development](docs/ios-development.md) - iOS technical standards
 - [Project Management](docs/project-management.md) - Phase planning
 - [Quality Gates](docs/quality-gates.md) - Completion criteria
@@ -751,7 +757,7 @@ You should see "Ready to build! ✅" when you run the app.
 
 Read these in order:
 
-1. **\`docs/claude.md\`** (5-10 min)
+1. **\`claude.md\`** (at project root) (5-10 min)
    - Master workflow overview
    - Quick reference guide
 
@@ -884,7 +890,7 @@ Before moving to Phase 1:
 ## 🎓 Learning Resources
 
 ### Workflow Guides
-- [Master Index](docs/claude.md)
+- [Master Index](claude.md) (project root)
 - [iOS Development](docs/ios-development.md)
 - [Project Management](docs/project-management.md)
 - [Quality Gates](docs/quality-gates.md)
@@ -909,8 +915,8 @@ Before moving to Phase 1:
 4. Check iOS deployment target is 17.0+
 
 ### "Can't find workflow docs"
-- They're in \`${PROJECT_PATH}/docs/\`
-- Master index: \`docs/claude.md\`
+- Master index: \`claude.md\` (at project root)
+- Detailed docs: \`${PROJECT_PATH}/docs/\`
 
 ### "Lost context between sessions"
 - Check \`tracking/session-state.md\`
@@ -996,7 +1002,7 @@ print_info "   cat ${PROJECT_PATH}/QUICK_START.md"
 echo ""
 
 echo "3️⃣  Review workflow documentation"
-print_info "   Start with: ${PROJECT_PATH}/docs/claude.md"
+print_info "   Start with: ${PROJECT_PATH}/claude.md"
 echo ""
 
 echo "4️⃣  Begin Phase 0 planning"
