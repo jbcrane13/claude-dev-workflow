@@ -77,20 +77,23 @@ Phase N: Production Ready
 
 ### Phase 0: Foundation & Planning
 
-**Duration**: 1-2 sessions  
+**Duration**: 1-2 sessions
 **Goal**: Establish project foundation
 
 **Tasks**:
+- [ ] Create or review Product Requirements Document (PRD)
 - [ ] Project setup and initialization
-- [ ] Architecture planning (Zen `thinkdeep`, `planner`)
+- [ ] Architecture planning (Zen `thinkdeep`)
 - [ ] Technology stack confirmation
 - [ ] Data model design
 - [ ] Mock data strategy definition
 - [ ] Quality gates definition
-- [ ] Phase 1-N planning
+- [ ] Complete project plan creation (Zen `planner` with PRD)
+- [ ] Phase 1-N planning with priorities
 - [ ] Risk identification
 
 **Deliverables**:
+- Product Requirements Document (PRD.md)
 - Project structure created
 - Architecture documented
 - Data models defined
@@ -337,24 +340,35 @@ Phase N: Production Ready
 
 ## Phase Planning Process
 
-### Step 1: Use Zen `planner`
+### Step 1: Use Zen `planner` with PRD
 
 **Coordinator initiates**:
 ```
 Tool: zen:planner
-Input: Complete project description
+Input: Product Requirements Document (PRD.md) + Project context
 Output: Detailed phase breakdown with dependencies
 ```
+
+**PRD Review First**:
+Before using `planner`, ensure PRD.md is complete with:
+- Product vision and goals
+- Target users and personas
+- Feature list with priorities
+- User flows and requirements
+- Success metrics
+- Technical constraints
 
 **Example Output**:
 ```markdown
 Project: iOS Task Management App
+(Based on PRD.md requirements)
 
 Phase 0: Foundation (1-2 sessions)
-├─ Step 1: Project setup
-├─ Step 2: Data model design
-├─ Step 3: Architecture planning
-└─ Step 4: Mock data strategy
+├─ Step 1: Review and finalize PRD
+├─ Step 2: Project setup
+├─ Step 3: Data model design
+├─ Step 4: Architecture planning
+└─ Step 5: Mock data strategy
 
 Phase 1: Core Features (3-4 sessions)
 ├─ Step 1: Task model (SwiftData)
@@ -429,11 +443,12 @@ Testing Agent:
 
 ### Step 4: Define Success Metrics
 
-**For each phase**:
-- What makes it "done"?
+**For each phase** (aligned with PRD):
+- What makes it "done"? (Reference PRD acceptance criteria)
 - What tests must pass?
 - What screenshots needed?
 - What documentation required?
+- How does this align with PRD success metrics?
 
 ---
 
@@ -843,6 +858,7 @@ None currently
 
 ## Related Documentation
 
+- [PRD Template](./PRD.md) - Product Requirements Document
 - [Quality Gates](./quality-gates.md) - Completion requirements
 - [Agent Deployment](./agent-deployment.md) - Team coordination
 - [Session Management](./session-management.md) - Continuity

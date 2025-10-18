@@ -28,6 +28,7 @@ All workflow documentation is located in the `docs/` directory:
 | Document | Purpose |
 |----------|---------|
 | [claude.md](./claude.md) | Master index and quick start guide |
+| [PRD Template](./docs/PRD.md) | Product Requirements Document template |
 | [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures |
 | [Project Management](./docs/project-management.md) | Phase-based planning |
 | [Session Management](./docs/session-management.md) | Context preservation |
@@ -77,6 +78,7 @@ claude-dev-workflow/
 ├── claude.md                          # Master workflow index
 │
 ├── docs/                              # Complete documentation
+│   ├── PRD.md                         # Product Requirements Document template
 │   ├── agent-deployment.md            # Team structures
 │   ├── project-management.md          # Phase planning
 │   ├── session-management.md          # Continuity practices
@@ -225,11 +227,12 @@ Screenshots stored in: `tracking/screenshots/`
 ### New Project Setup
 
 - [ ] Read [claude.md](./claude.md) master index
+- [ ] Create [PRD](./docs/PRD.md) defining product requirements
 - [ ] Review [Agent Deployment](./docs/agent-deployment.md)
 - [ ] Select appropriate team structure
 - [ ] Run deployment script for your platform
 - [ ] Review technical guidelines (iOS, Web, etc.)
-- [ ] Use Zen `planner` to create project plan
+- [ ] Use Zen `planner` with PRD to create project plan
 - [ ] Define Phase 0-N in project-management format
 - [ ] Set up session management tracking
 - [ ] Initialize mock data registry

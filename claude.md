@@ -24,6 +24,7 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 | Document | Purpose | When to Use |
 |----------|---------|-------------|
+| [PRD Template](./docs/PRD.md) | Product Requirements Document template | Phase 0 planning, before using planner |
 | [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures and coordination | Project setup, team coordination |
 | [Project Management](./docs/project-management.md) | Phase-based planning and execution | Planning, tracking, delivery |
 | [Session Management](./docs/session-management.md) | Context preservation and handoffs | Every session, agent transitions |
@@ -41,9 +42,10 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 **Phase 0: Setup**
 1. Review [Agent Deployment](./docs/agent-deployment.md) → Select **iOS Development Team**
-2. Review [Project Management](./docs/project-management.md) → Define phases and P1 features
-3. Review [iOS Development](./docs/ios-development.md) → Understand technical standards
-4. Use **Zen `planner`** tool to create detailed project plan
+2. Create or review [PRD](./docs/PRD.md) → Define product requirements and features
+3. Review [Project Management](./docs/project-management.md) → Understand phase structure
+4. Review [iOS Development](./docs/ios-development.md) → Understand technical standards
+5. Use **Zen `planner`** tool with PRD to create detailed project plan 
 
 **Phase 1: Core Infrastructure (P1)**
 1. Coordinator assigns tasks to parallel agents
@@ -66,8 +68,9 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 **Phase 0: Setup**
 1. Review [Agent Deployment](./docs/agent-deployment.md) → Select **Web Development Team**
-2. Review [Project Management](./docs/project-management.md) → Define phases
-3. Use **Zen `planner`** for architecture planning
+2. Create or review [PRD](./docs/PRD.md) → Define product requirements and features
+3. Review [Project Management](./docs/project-management.md) → Understand phase structure
+4. Use **Zen `planner`** tool with PRD for architecture planning
 
 **Phase 1-N: Iterative Development**
 1. Coordinator orchestrates parallel frontend/backend work
@@ -146,8 +149,9 @@ Every project follows this pattern:
 
 ```
 Phase 0: Foundation
+├── Product Requirements Document (PRD)
 ├── Project setup
-├── Architecture planning (Zen: thinkdeep, planner)
+├── Architecture planning (Zen: planner with PRD)
 ├── Mock data strategy
 └── Quality gate definition
 
@@ -282,6 +286,7 @@ Phase N: Polish & Launch
 project-root/
 ├── claude.md                          # This file
 ├── docs/
+│   ├── PRD.md                         # Product Requirements Document
 │   ├── agent-deployment.md            # Team structures
 │   ├── project-management.md          # Phase planning
 │   ├── session-management.md          # Continuity
@@ -340,9 +345,10 @@ project-root/
 ### For New Projects:
 
 - [ ] Read this complete document
+- [ ] Create [PRD](./docs/PRD.md) defining product requirements and features
 - [ ] Review [Agent Deployment](./docs/agent-deployment.md) and select team
-- [ ] Use Zen `planner` to create initial project plan
-- [ ] Define phases in [Project Management](./docs/project-management.md) format
+- [ ] Review [Project Management](./docs/project-management.md) to understand phase structure
+- [ ] Use Zen `planner` with PRD to create initial project plan
 - [ ] Identify P1 features (minimum viable functionality)
 - [ ] Set up [Session Management](./docs/session-management.md) tracking
 - [ ] Create mock data registry using [Mock Data Strategy](./docs/mock-data-strategy.md)
@@ -410,19 +416,21 @@ project-root/
 ## ⚡ Quick Reference
 
 **Most Common Workflow**:
-1. `planner` → Create plan
-2. Deploy agents → Parallel work
-3. `codereview` → Verify quality
-4. `debug` → Fix issues
-5. `precommit` → Final check
-6. Build + Screenshot → Verify
-7. Mark complete ✅
+1. Review PRD → Understand requirements
+2. `planner` (with PRD) → Create plan
+3. Deploy agents → Parallel work
+4. `codereview` → Verify quality
+5. `debug` → Fix issues
+6. `precommit` → Final check
+7. Build + Screenshot → Verify
+8. Mark complete ✅
 
 **Remember**: Nothing is complete until it builds, runs, and has screenshot proof! 📸
 
 ---
 
 **Related Documentation**:
+- 📄 [PRD Template](./docs/PRD.md)
 - 🤖 [Agent Deployment](./docs/agent-deployment.md)
 - 📋 [Project Management](./docs/project-management.md)
 - 🔄 [Session Management](./docs/session-management.md)
