@@ -11,9 +11,25 @@ This document defines the mandatory quality gates that must pass before marking 
 
 ---
 
-## Core Principle
+## Core Principles
 
 > **If it doesn't build, run, and show proof via screenshot, it's not complete.**
+
+> **⚠️ CRITICAL: NO commits without zen precommit passing first. This is MANDATORY.**
+
+---
+
+## ⚠️ MANDATORY Pre-Commit Requirement
+
+**BEFORE ANY GIT COMMIT**:
+
+1. ✅ **Run zen `precommit` tool** (MANDATORY)
+2. ✅ **Address ALL critical and high severity findings**
+3. ✅ **Document or fix medium/low severity findings**
+4. ✅ **Re-run precommit if any changes made**
+5. ✅ **Only commit after precommit PASSES**
+
+**NO EXCEPTIONS**: Every commit must be preceded by a successful zen precommit check.
 
 ---
 
@@ -87,7 +103,8 @@ This document defines the mandatory quality gates that must pass before marking 
 - [ ] Session state updated
 - [ ] Decisions documented
 - [ ] Task marked complete in tracking
-- [ ] Git commit with clear message
+- [ ] **Zen `precommit` executed and PASSED** ⚠️
+- [ ] Git commit with clear message (ONLY after precommit passes)
 
 ---
 
@@ -166,7 +183,7 @@ This document defines the mandatory quality gates that must pass before marking 
 
 **5. Documentation** ✅
 - [ ] Phase summary written
-- [ ] Key decisions documented
+- [ ] Key decisions documented (ADRs for significant decisions)
 - [ ] Known issues listed (if any)
 - [ ] Mock data status updated
 - [ ] Next phase planned
@@ -176,11 +193,53 @@ This document defines the mandatory quality gates that must pass before marking 
 - [ ] Phase 2: Migration plan exists
 - [ ] Phase 3+: No mock data remaining (except tests)
 
-**7. Performance & Quality** ✅
+**7. ⚠️ MANDATORY Phase Gate Validations** (NEW - Proactive Quality)
+
+**Quality Baseline Analysis** ✅
+- [ ] Run `analyze` (general or quality focus) on entire codebase or phase changes
+- [ ] Document quality score/issues in `tracking/knowledge-base/phase-X-quality-report.md`
+- [ ] Save continuation_id for future reference
+- [ ] Address CRITICAL/HIGH issues before phase closure
+- [ ] Compare to previous phase (quality improving or declining?)
+
+**Technical Debt Analysis** ✅
+- [ ] Run `refactor` (codesmells) on all files modified in phase
+- [ ] Document findings in `tracking/technical-debt-log.md`
+- [ ] Save continuation_id and full output
+- [ ] Track debt trend: Increasing ⬆️ / Stable ➡️ / Decreasing ⬇️
+- [ ] Address CRITICAL technical debt immediately
+- [ ] Budget time in next phase for debt reduction if increasing
+- [ ] Update debt counts by severity (CRITICAL/HIGH/MEDIUM/LOW)
+
+**Performance Regression Detection** ✅
+- [ ] Run `analyze` (performance focus)
+- [ ] Measure and document metrics in `tracking/performance-baseline.md`:
+  - Build time (clean and incremental)
+  - App/page load time
+  - Critical user flow performance (3-5 key operations)
+  - Memory usage
+  - Binary/bundle size
+- [ ] Compare to baseline (Phase 1) or previous phase
+- [ ] Flag regressions >10% for investigation
+- [ ] Use `debug` to investigate significant regressions
+- [ ] Save continuation_id for all performance analyses
+
+**Phase Quality Report** ✅
+- [ ] Create comprehensive phase report including:
+  - Quality analysis results (continuation_id)
+  - Technical debt summary (continuation_id)
+  - Performance metrics and trends (continuation_id)
+  - ADRs created during phase
+  - Tool chain documentation
+- [ ] Save in `tracking/knowledge-base/phase-X-summary.md`
+- [ ] Include all continuation IDs for future context reuse
+
+**8. Performance & Quality** ✅
 - [ ] No memory leaks
-- [ ] No performance regressions
+- [ ] No performance regressions (>10% from baseline)
 - [ ] Accessibility audit passed
 - [ ] Security review (if applicable)
+- [ ] Phase gate validations completed and documented
 
 ---
 
@@ -364,16 +423,25 @@ tracking/screenshots/
 
 ### Required Tool Usage
 
+**⚠️ Before ANY Commit (MANDATORY)** ✅
+- [ ] **Zen `precommit` executed**
+- [ ] **ALL critical/high findings addressed**
+- [ ] **Medium/low findings addressed or documented**
+- [ ] **Precommit shows PASS status**
+- [ ] **Build verified after addressing findings**
+
 **Before Task Complete** ✅
 - [ ] Zen `codereview` run
 - [ ] All findings addressed or documented
 - [ ] Quality issues resolved
+- [ ] **Zen `precommit` passed before final commit**
 
 **Before Phase Complete** ✅
 - [ ] Zen `codereview` on all code
-- [ ] Zen `precommit` verification passed
+- [ ] **Zen `precommit` verification passed on ALL commits**
 - [ ] All findings addressed
 - [ ] Quality acceptable
+- [ ] **Final precommit check before phase closure**
 
 ---
 
@@ -428,6 +496,100 @@ Web:
 - [ ] Session state updated
 - [ ] Decisions documented
 - [ ] Task marked complete
+
+### Pre-Commit (MANDATORY) ⚠️
+- [ ] Zen precommit executed
+- [ ] All critical/high findings fixed
+- [ ] Medium/low findings addressed
+- [ ] Precommit PASSED
+- [ ] Committed ONLY after precommit pass
+```
+
+---
+
+### Copy/Paste for Each Phase Completion
+
+```markdown
+## Phase Gate Checklist: Phase [N] - [Phase Name]
+
+### Phase Completeness
+- [ ] All planned features implemented
+- [ ] No incomplete work or TODOs in production code
+- [ ] All features work together (no integration bugs)
+- [ ] Full app builds clean and runs without issues
+
+### Comprehensive Quality
+- [ ] All tests passing (no skipped tests)
+- [ ] Test coverage ≥ 70%
+- [ ] No CRITICAL or HIGH severity bugs
+- [ ] All feature screenshots captured
+
+### ⚠️ MANDATORY Phase Gate Validations
+
+#### Quality Baseline Analysis
+- [ ] Run `analyze` (general/quality focus)
+- [ ] Tool: `mcp__zen__analyze`
+- [ ] Model: gemini-2.5-pro
+- [ ] Continuation ID: _____________
+- [ ] Quality score/issues: _____________
+- [ ] CRITICAL/HIGH issues: _____ (must be 0)
+- [ ] Documented in: tracking/knowledge-base/phase-X-quality-report.md
+- [ ] Trend vs previous phase: ⬆️ Better / ➡️ Same / ⬇️ Worse
+
+#### Technical Debt Analysis
+- [ ] Run `refactor` (codesmells)
+- [ ] Tool: `mcp__zen__refactor`
+- [ ] Model: gemini-2.5-pro
+- [ ] Continuation ID: _____________
+- [ ] CRITICAL debt: _____ (must be 0)
+- [ ] HIGH debt: _____
+- [ ] MEDIUM debt: _____
+- [ ] LOW debt: _____
+- [ ] Documented in: tracking/technical-debt-log.md
+- [ ] Debt trend: ⬆️ Increasing / ➡️ Stable / ⬇️ Decreasing
+- [ ] If increasing: Time budgeted in next phase for reduction
+
+#### Performance Analysis
+- [ ] Run `analyze` (performance focus)
+- [ ] Tool: `mcp__zen__analyze`
+- [ ] Model: gemini-2.5-pro
+- [ ] Continuation ID: _____________
+- [ ] Build time: _____ seconds (vs baseline: _____)
+- [ ] App/page load: _____ ms (vs baseline: _____)
+- [ ] Memory usage: _____ MB (vs baseline: _____)
+- [ ] Binary/bundle size: _____ MB (vs baseline: _____)
+- [ ] Regressions >10%: _____ (must investigate if any)
+- [ ] Documented in: tracking/performance-baseline.md
+
+#### Phase Quality Report
+- [ ] Created tracking/knowledge-base/phase-X-summary.md
+- [ ] Includes all continuation IDs
+- [ ] Includes quality analysis results
+- [ ] Includes technical debt summary
+- [ ] Includes performance metrics
+- [ ] Lists ADRs created this phase
+- [ ] Documents tool chains used
+
+### Documentation
+- [ ] Phase summary written
+- [ ] ADRs created for significant decisions
+- [ ] Known issues documented (if any)
+- [ ] Mock data status updated
+- [ ] Next phase planned
+
+### Performance & Quality
+- [ ] No memory leaks
+- [ ] No performance regressions >10%
+- [ ] Accessibility audit passed (if applicable)
+- [ ] Security review completed (if applicable)
+
+### Precommit Verification
+- [ ] All commits had `precommit` validation
+- [ ] Final `precommit` check before phase closure: PASSED ✅
+
+**RESULT**: All gates passed ✅ / Issues remain ❌
+**Phase Status**: COMPLETE / INCOMPLETE
+**Next Phase**: [Phase name and objectives]
 ```
 
 ---
@@ -474,6 +636,13 @@ Web:
 - Cannot partially complete
 - Cannot defer critical issues
 - Quality is non-negotiable
+- **Cannot commit without precommit passing** ⚠️
+
+**Specific: Precommit Violations**:
+- Any commit without precommit → **Flagged for review**
+- Unaddressed critical/high findings → **Commit must be reverted**
+- Skipping precommit repeatedly → **Task reassignment**
+- Precommit failures ignored → **Quality gates fail, work rejected**
 
 ---
 
@@ -528,6 +697,13 @@ Web:
 - Session state updated
 - Decision to use sheet (not full screen) documented
 
+✅ Pre-Commit Verification (MANDATORY)
+- Zen precommit executed: PASSED ✅
+- No critical or high severity findings
+- 2 medium findings: Documented in code comments
+- Build verified after precommit
+- Committed with message including "Zen precommit: PASSED ✅"
+
 **RESULT**: ✅ ALL GATES PASSED - TASK COMPLETE
 ```
 
@@ -579,6 +755,13 @@ Web:
 - No memory leaks (Instruments verified)
 - Smooth animations
 - Fast data operations
+
+✅ Pre-Commit Verification (ALL COMMITS)
+- All 6 commits had zen precommit executed
+- All precommit checks PASSED ✅
+- No commits made without precommit verification
+- Final precommit before phase closure: PASSED ✅
+- All commit messages include "Zen precommit: PASSED"
 
 **RESULT**: ✅ ALL GATES PASSED - PHASE 1 COMPLETE
 ```

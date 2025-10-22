@@ -236,13 +236,16 @@ Parameters:
 
 ---
 
-### `precommit` - Pre-Commit Verification
+### `precommit` - Pre-Commit Verification ⚠️ MANDATORY
 
-**When to Use**:
-- Before every git commit
-- Before marking task complete
-- Before phase completion
-- Quality gate verification
+**⚠️ CRITICAL**: This tool is MANDATORY before ANY git commit. NO EXCEPTIONS.
+
+**When to Use** (REQUIRED):
+- ✅ **Before EVERY git commit** (MANDATORY)
+- ✅ **Before marking task complete** (MANDATORY)
+- ✅ **Before phase completion** (MANDATORY)
+- ✅ **Before agent handoff** (MANDATORY)
+- ✅ **After fixing any issues** (MANDATORY)
 
 **How to Use**:
 ```yaml
@@ -263,11 +266,22 @@ Parameters:
 ```
 
 **Best Practices**:
-- Run before every commit
-- Check both staged and unstaged
-- Verify all quality gates
-- Fix all issues found
-- Document what was verified
+- ⚠️ **NEVER commit without running precommit first**
+- **Run before EVERY single commit** (not just phase/task completion)
+- Check both staged and unstaged changes
+- Verify all quality gates pass
+- **Fix ALL critical and high severity issues** before committing
+- Document or fix medium/low severity issues
+- **Re-run precommit if you make ANY changes** after first run
+- Only commit after precommit shows PASS status
+- Include "Zen precommit: PASSED ✅" in commit message
+
+**Consequences of Skipping**:
+- ❌ Commit will be flagged for review
+- ❌ May need to revert commit
+- ❌ Quality gates will fail
+- ❌ Task/Phase cannot be marked complete
+- ❌ May result in task reassignment
 
 ---
 
@@ -447,8 +461,11 @@ Parameters:
 3. Use `apilookup` as needed for APIs
 4. Use `debug` when issues arise
 5. Use `codereview` before completion
-6. Use `precommit` before marking complete
+6. ⚠️ Use `precommit` before EVERY commit (MANDATORY)
+7. ⚠️ Use `precommit` again before marking complete (MANDATORY)
 ```
+
+**CRITICAL**: `precommit` must be run before EVERY git commit, not just at completion.
 
 ---
 
@@ -460,15 +477,23 @@ Continuous:
 - `apilookup` for documentation
 - `debug` for issues
 
+⚠️ Before EVERY Commit (MANDATORY):
+- `precommit` for verification (NO EXCEPTIONS)
+- Fix all critical/high findings
+- Only commit after PASS
+
 Before Task Complete:
 - `codereview` for quality
-- `precommit` for verification
+- `precommit` for final verification (if not just run)
 
 Before Phase Complete:
 - `analyze` for comprehensive review
 - `refactor` for improvements
 - `consensus` for team alignment
+- `precommit` for final phase verification
 ```
+
+**REMINDER**: The `precommit` tool is MANDATORY before EVERY git commit, regardless of size or scope.
 
 ---
 
@@ -480,10 +505,13 @@ Before Phase Complete:
 - Planning → `planner`
 - Complex decisions → `thinkdeep`
 - Quality checks → `codereview`
+- ⚠️ **Before EVERY commit** → `precommit` (MANDATORY)
 - Final verification → `precommit`
 - Problems → `debug`
 - Documentation → `apilookup`
 - Everything else → `chat`
+
+**NON-NEGOTIABLE**: `precommit` must be used before every single git commit.
 
 ---
 

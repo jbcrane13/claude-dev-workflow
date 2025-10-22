@@ -24,6 +24,7 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 | Document | Purpose | When to Use |
 |----------|---------|-------------|
+| **[Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)** | **Complete guide to Tier 1-3 improvements** | **Start here for overview of new features** |
 | [PRD Template](./docs/PRD.md) | Product Requirements Document template | Phase 0 planning, before using planner |
 | [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures and coordination | Project setup, team coordination |
 | [Project Management](./docs/project-management.md) | Phase-based planning and execution | Planning, tracking, delivery |
@@ -31,8 +32,18 @@ This documentation provides a complete, phase-based development workflow for AI 
 | [iOS Development](./docs/ios-development.md) | iOS technical standards (Swift/SwiftUI) | All iOS development tasks |
 | [Testing Guidelines](./docs/testing-guidelines.md) | Testing requirements and quality gates | Feature completion, QA |
 | [Zen Tools Guide](./docs/zen-tools-guide.md) | Leveraging Zen MCP tools effectively | Throughout all phases |
+| **[Tool Chaining Patterns](./docs/tool-chaining-patterns.md)** | **Effective tool sequences for common scenarios** | **Complex tasks, decisions, debugging** |
+| **[ADR Guide](./docs/adr/README.md)** | **Architecture Decision Records** | **Major architectural/design decisions** |
 | [Mock Data Strategy](./docs/mock-data-strategy.md) | Mock-to-real data transition planning | Data modeling, API integration |
-| [Quality Gates](./docs/quality-gates.md) | Completion criteria for tasks/phases | Before marking anything complete |
+| [Quality Gates](./docs/quality-gates.md) | Completion criteria for tasks/phases **(includes Phase Gates)** | Before marking anything complete |
+
+### Tracking & Knowledge Base
+
+| Document | Purpose | When to Update |
+|----------|---------|----------------|
+| [Technical Debt Log](./tracking/technical-debt-log.md) | Track debt trends across phases | End of every phase (mandatory) |
+| [Performance Baseline](./tracking/performance-baseline.md) | Performance metrics and regression detection | End of every phase (mandatory) |
+| Knowledge Base (`tracking/knowledge-base/`) | Preserve tool outputs and continuation IDs | Ongoing (ADRs, analyses, retros) |
 
 ---
 
@@ -79,6 +90,192 @@ This documentation provides a complete, phase-based development workflow for AI 
 4. Cross-browser testing required
 
 **Tools to Use**: `planner`, `consensus`, `thinkdeep`, `refactor`, `challenge`
+
+---
+
+## ⚡ Proactive Quality Workflows (NEW)
+
+### Overview: Reactive → Proactive Shift
+
+**Before**: Tools used reactively (when problems occur)
+- `debug` when bugs happen
+- `codereview` before completion
+- `refactor` when code smells obvious
+
+**Now**: Tools used proactively (prevent problems before they occur)
+- **Phase Gates**: Mandatory `analyze` + `refactor` + `analyze` (perf) at every phase end
+- **ADRs**: Formal decision documentation with `challenge` + `consensus`
+- **Continuous Monitoring**: Track quality/debt/performance trends
+
+### 🎯 Tier 1: Mandatory (Start Immediately)
+
+#### 1. Phase Gate Validations ⚠️ REQUIRED
+
+**At END of EVERY Phase**:
+```yaml
+Phase Completion Checklist (MANDATORY):
+1. Run `analyze` (general/quality focus)
+   → Establish quality baseline
+   → Save continuation_id
+   → Document in tracking/knowledge-base/phase-X-quality-report.md
+
+2. Run `refactor` (codesmells)
+   → Identify technical debt
+   → Save continuation_id
+   → Update tracking/technical-debt-log.md
+   → Track trend: ⬆️ Increasing / ➡️ Stable / ⬇️ Decreasing
+
+3. Run `analyze` (performance focus)
+   → Measure build time, app launch, memory, size
+   → Save continuation_id
+   → Update tracking/performance-baseline.md
+   → Flag regressions >10%
+
+4. Address CRITICAL/HIGH issues before phase closure
+
+5. Create phase-X-summary.md with all continuation IDs
+```
+
+**Time**: 15-20 minutes per phase
+**Value**: Catch 50-70% of issues before they become problems
+
+**See**: [Quality Gates](./docs/quality-gates.md) Section 7 for complete checklist
+
+#### 2. Architecture Decision Records (ADRs)
+
+**For Major Decisions**:
+```yaml
+Decision Workflow (Recommended):
+1. `challenge` → Question assumptions
+2. `consensus` → Multi-model analysis (for/against/neutral)
+   → 2-3 models with different stances
+   → Save continuation_id
+3. (Optional) `thinkdeep` → Deep investigation if complex
+   → Reuse continuation_id for context
+4. Create ADR → docs/adr/ADR-NNN-title.md
+   → Include all continuation IDs
+   → Document alternatives, rationale, trade-offs
+```
+
+**Examples of ADR-worthy decisions**:
+- State management approach (SwiftUI @Observable vs TCA)
+- Data persistence (SwiftData vs Core Data vs Realm)
+- API architecture (REST vs GraphQL)
+- Navigation patterns
+- Major framework/library choices
+
+**Time**: 20-30 minutes per decision
+**Value**: Better decisions, preserved knowledge, context for future
+
+**See**: [ADR Guide](./docs/adr/README.md) for templates and examples
+
+#### 3. Technical Debt Monitoring
+
+**Every Phase End**:
+```yaml
+Debt Tracking:
+1. Run `refactor` (part of phase gates above)
+2. Log debt count by severity in tracking/technical-debt-log.md
+3. Compare to previous phase
+4. If debt increasing ⬆️:
+   → Budget 10-20% of next phase for debt reduction
+   → Address CRITICAL immediately
+```
+
+**Time**: 10-15 minutes per phase (included in phase gates)
+**Value**: Prevents debt snowball, makes debt visible
+
+**See**: [Technical Debt Log](./tracking/technical-debt-log.md) for tracking template
+
+### 🔥 Tier 2: High Value (Start Next Phase)
+
+#### 4. Performance Baseline & Regression Detection
+
+**Phase 1**: Establish baseline
+**Phase 2+**: Compare and detect regressions
+
+**Platform-Specific Metrics**:
+- **iOS**: Build time, cold start, memory, binary size
+- **Web**: Bundle size, TTI, FCP, LCP
+- **Backend**: API response times (p50/p95/p99), throughput
+
+**See**: [Performance Baseline](./tracking/performance-baseline.md) for platform-specific templates
+
+#### 5. Tool Chaining Patterns
+
+**Use proven sequences for**:
+- Major architectural decisions
+- Complex bug investigations
+- Phase completions
+- Major feature additions
+- Code review + improvement cycles
+- Performance optimizations
+- Pre-release validations
+
+**Example Pattern - Major Decision**:
+```
+challenge → consensus (save ID) → thinkdeep (reuse ID) → ADR
+```
+
+**See**: [Tool Chaining Patterns](./docs/tool-chaining-patterns.md) for complete pattern library
+
+#### 6. Knowledge Base System
+
+**Structure**:
+```
+tracking/knowledge-base/
+├── architecture-decisions/  # ADR tool outputs
+├── performance-analysis/     # analyze (perf) outputs
+├── technical-debt/           # refactor outputs
+└── retrospectives/           # Phase retrospectives
+```
+
+**Purpose**: Preserve continuation IDs and full tool outputs for:
+- Context reuse in future sessions
+- Agent handoffs
+- Institutional knowledge
+- Tool chain reference
+
+### 📊 Tier 3: Advanced (Future)
+
+#### 7. Dependency Monitoring
+- Monthly `apilookup` for all major dependencies
+- Check deprecations, security advisories
+- Plan migrations proactively
+
+#### 8. Cross-Phase Retrospectives
+- Every 2-3 phases
+- Comprehensive `analyze` of entire codebase
+- Use `consensus` for improvement priorities
+- Track long-term quality trends
+
+**See**: [Retrospective Template](./tracking/knowledge-base/retrospectives/template.md)
+
+---
+
+### Quick Reference: Proactive Workflow
+
+```
+EVERY PHASE END (Mandatory):
+├─ analyze (quality) → quality-report.md → Save ID
+├─ refactor (debt) → technical-debt-log.md → Save ID
+├─ analyze (performance) → performance-baseline.md → Save ID
+├─ Address CRITICAL/HIGH issues
+└─ Create phase-X-summary.md with all IDs
+
+MAJOR DECISIONS (Recommended):
+├─ challenge → Question assumptions
+├─ consensus → Multi-model validation → Save ID
+├─ (Optional) thinkdeep → Deep dive → Reuse ID
+└─ Create ADR-NNN.md → Document with IDs
+
+CONTINUOUS:
+├─ Use tool chaining patterns for complex work
+├─ Save continuation IDs in knowledge base
+└─ Track trends: Quality ↗️, Debt ↘️, Performance →
+```
+
+**Full Details**: See [Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)
 
 ---
 
@@ -211,6 +408,12 @@ Phase N: Polish & Launch
 - ✅ README updated (if needed)
 - ✅ Mock data tracking updated
 
+**Pre-Commit Verification** (MANDATORY)
+- ✅ Zen `precommit` tool executed successfully
+- ✅ All precommit findings addressed
+- ✅ No critical or high severity issues
+- ✅ Build passes after all changes
+
 **See**: [Quality Gates Guide](./docs/quality-gates.md) for complete checklist
 
 ---
@@ -254,6 +457,12 @@ Phase N: Polish & Launch
 2. Clear next steps
 3. Blocker identification
 4. Context preservation for next agent
+
+**Before ANY Commit**
+1. ✅ **MANDATORY**: Run Zen `precommit` tool
+2. ✅ All findings addressed or documented
+3. ✅ Quality gates passed
+4. ✅ No critical issues remaining
 
 **See**: [Session Management Guide](./docs/session-management.md)
 
@@ -360,6 +569,88 @@ project-root/
 
 ---
 
+## 🔒 Git Commit Protocol
+
+### MANDATORY Pre-Commit Workflow
+
+**⚠️ CRITICAL**: NO commits are allowed without successfully running zen precommit first.
+
+### Pre-Commit Checklist
+
+**1. Stage Changes**
+```bash
+git add [files]
+git status  # Verify staged changes
+```
+
+**2. Run Zen Precommit (MANDATORY)**
+```yaml
+Tool: zen:precommit
+Parameters:
+  model: "gemini-2.5-pro"  # or preferred model
+  step: "Verify changes ready for commit: [brief description]"
+  findings: "All features implemented, tests passing"
+  path: "/absolute/path/to/repo"
+  include_staged: true
+  include_unstaged: false  # Only check what will be committed
+  relevant_files:
+    - [list all modified files]
+  step_number: 1
+  total_steps: 3
+  next_step_required: true
+```
+
+**3. Address ALL Findings**
+- ✅ Fix critical issues immediately
+- ✅ Fix high priority issues
+- ✅ Document or fix medium/low issues
+- ✅ Re-run precommit if changes made
+- ❌ Do NOT commit with unresolved critical/high issues
+
+**4. Commit ONLY After Precommit Passes**
+```bash
+git commit -m "feat: descriptive message
+
+- Detail 1
+- Detail 2
+
+Zen precommit: PASSED ✅"
+```
+
+**5. Verification**
+- ✅ Build still passes after commit
+- ✅ Tests still pass after commit
+- ✅ No new issues introduced
+
+### Enforcement
+
+**Who Enforces**:
+- **ALL Agents**: Must run precommit before committing
+- **Coordinator Agent**: Verifies precommit was run
+- **Testing Agent**: Confirms precommit results
+
+**Consequences of Skipping Precommit**:
+1. Commit will be flagged for review
+2. May need to be reverted
+3. Re-work required
+4. **Quality gates fail**
+
+### When to Run Precommit
+
+**Required**:
+- ✅ Before EVERY git commit
+- ✅ Before marking any task complete
+- ✅ Before marking any phase complete
+- ✅ Before any handoff to another agent
+- ✅ After fixing any bugs/issues
+
+**Optional** (but recommended):
+- Before major refactoring
+- After merging branches
+- Before starting new work (verify clean state)
+
+---
+
 ## 🔄 Continuous Improvement
 
 ### Feedback Loop
@@ -421,11 +712,14 @@ project-root/
 3. Deploy agents → Parallel work
 4. `codereview` → Verify quality
 5. `debug` → Fix issues
-6. `precommit` → Final check
+6. **`precommit` → MANDATORY before ANY commit** ⚠️
 7. Build + Screenshot → Verify
-8. Mark complete ✅
+8. Commit ONLY after precommit passes ✅
+9. Mark complete ✅
 
-**Remember**: Nothing is complete until it builds, runs, and has screenshot proof! 📸
+**Remember**:
+- ⚠️ **NEVER commit without running zen precommit first!**
+- Nothing is complete until it builds, runs, and has screenshot proof! 📸
 
 ---
 
