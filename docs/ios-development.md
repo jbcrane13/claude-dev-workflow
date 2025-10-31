@@ -1,8 +1,64 @@
 # iOS Development Guidelines
 
-**Version**: 1.0  
-**Last Updated**: 2025-01-20  
+**Version**: 1.0
+**Last Updated**: 2025-01-20
 **Minimum Target**: iOS 17.0+
+
+---
+
+## ⚠️ MANDATORY RULES (NON-NEGOTIABLE)
+
+**Before writing ANY iOS code, you MUST comply with these rules. These are project requirements, not recommendations.**
+
+### ✅ REQUIRED Technologies (You MUST Use)
+
+| Category | Technology | Notes |
+|----------|------------|-------|
+| **UI Framework** | SwiftUI | Exclusively - no UIKit except when SwiftUI lacks APIs |
+| **Data Persistence** | SwiftData | Exclusively - no Core Data |
+| **State Management** | @Observable | From Observation framework - no Combine |
+| **Concurrency** | async/await | Swift Concurrency - no completion handlers |
+| **Navigation** | NavigationStack | Modern navigation - no NavigationView |
+| **Minimum Target** | iOS 17.0+ | Do not support older iOS versions |
+| **Language** | Swift 6.0+ | Latest Swift features |
+
+### ❌ FORBIDDEN Technologies (You MUST NOT Use)
+
+| Forbidden | Reason | Use Instead |
+|-----------|--------|-------------|
+| **UIKit** | Legacy, not SwiftUI-native | SwiftUI (exception: missing APIs) |
+| **Core Data** | Legacy, replaced | SwiftData |
+| **Combine** | Replaced by Observation | @Observable + async/await |
+| **@Published** | Legacy state | @Observable properties |
+| **@ObservableObject** | Legacy pattern | @Observable class |
+| **@StateObject** | Legacy pattern | @State + @Observable |
+| **@EnvironmentObject** | Legacy pattern | @Environment + @Observable |
+| **NavigationView** | Deprecated | NavigationStack |
+| **Completion Handlers** | Legacy async pattern | async/await |
+| **Closures for async** | Legacy async pattern | async/await |
+
+### 🔒 Critical Rules - Zero Tolerance
+
+1. **NO UIKit** unless SwiftUI genuinely lacks the required API (rare)
+2. **NO Core Data** - SwiftData is the only approved persistence layer
+3. **NO Combine** - @Observable framework is the only approved state management
+4. **NO completion handlers** - async/await for all asynchronous operations
+5. **iOS 17.0+ ONLY** - do not add backwards compatibility code
+
+### 🚨 Consequences of Non-Compliance
+
+If you violate these rules:
+- ❌ Code review will **FAIL**
+- ❌ Pull request will be **REJECTED**
+- ❌ You will be required to **REWRITE** the code
+- ❌ Quality gates will **NOT PASS**
+
+**These rules exist to ensure:**
+- Modern, maintainable codebase
+- Consistent architecture
+- Future compatibility
+- Team productivity
+- Reduced technical debt
 
 ---
 

@@ -1,8 +1,107 @@
 # AI Agent Development Workflow - Master Index
 
-**Version**: 2.0  
-**Last Updated**: 2025-01-20  
+**Version**: 3.0
+**Last Updated**: 2025-01-30  
 **Workflow Type**: Phase-Based Collaborative Development
+
+---
+
+## ⚠️ MANDATORY REQUIREMENTS (READ FIRST!)
+
+**Before starting ANY work, you MUST comply with these requirements. These are not optional.**
+
+### 1. Agent Team Deployment - REQUIRED
+
+**DECISION TREE - When to Deploy Multi-Agent Teams:**
+
+❓ **Is this an iOS/Android/Web project with 3+ features?**
+- **YES** → ✅ **YOU MUST DEPLOY MULTI-AGENT TEAM** (proceed below)
+- **NO** → Single agent may be acceptable for prototypes only
+
+❓ **Is this a complex bug fix affecting multiple files/systems?**
+- **YES** → ✅ **YOU MUST DEPLOY MULTI-AGENT TEAM**
+- **NO** → Single agent may be acceptable
+
+❓ **Is this a major refactoring or architectural change?**
+- **YES** → ✅ **YOU MUST DEPLOY MULTI-AGENT TEAM**
+- **NO** → Single agent may be acceptable
+
+**DEFAULT RULE**: **If uncertain, deploy the team.** Multi-agent coordination is better than missed requirements.
+
+**IMMEDIATE ACTION REQUIRED:**
+1. See team structures in [Agent Deployment Guide](./docs/agent-deployment.md)
+2. **iOS Projects**: Deploy 5-agent team (Coordinator + Architecture + UI + Feature + Testing)
+3. **Web Projects**: Deploy 6-agent team (Coordinator + Backend + Frontend + UI + Database + Testing)
+4. **Coordinator Agent MUST be deployed first** and spawn other agents
+
+❌ **VIOLATION**: Working solo on multi-feature/multi-file projects
+✅ **COMPLIANCE**: Deploying coordinator + specialist agents for complex work
+
+---
+
+### 2. iOS Development Standards - REQUIRED
+
+**WHEN**: Any iOS development task
+**COMPLIANCE**: These rules are NON-NEGOTIABLE project requirements
+
+✅ **MANDATORY - You MUST Use:**
+- **SwiftUI** (exclusively for UI) - target iOS 17.0+
+- **SwiftData** (for data persistence)
+- **@Observable** (for state management)
+- **async/await** (for asynchronous operations)
+- **NavigationStack** (for navigation)
+
+❌ **FORBIDDEN - You MUST NOT Use:**
+- **UIKit** (except when SwiftUI genuinely lacks required APIs)
+- **Core Data** (SwiftData only)
+- **Combine** / `@Published` / `@ObservableObject` / `@StateObject` (use @Observable)
+- **Completion handlers/closures** for async operations (use async/await)
+- **NavigationView** (deprecated, use NavigationStack)
+
+**📖 BEFORE WRITING ANY iOS CODE**: Read [iOS Development Guidelines](./docs/ios-development.md) in full
+
+❌ **VIOLATION**: Using UIKit, Core Data, or Combine in new code
+✅ **COMPLIANCE**: Following the mandatory tech stack above
+
+---
+
+### 3. Quality Gates - REQUIRED
+
+**WHEN**: Before marking ANY task/feature/phase as complete
+**COMPLIANCE**: ALL gates must pass, no exceptions
+
+**MANDATORY Pre-Completion Checklist:**
+- ✅ Run `zen precommit` tool (**NO EXCEPTIONS** - required before every commit)
+- ✅ Provide screenshot evidence (saved in `tracking/screenshots/`)
+- ✅ All tests passing (minimum 70% coverage)
+- ✅ Builds successfully with no errors
+- ✅ Code reviewed (`zen codereview` passed)
+- ✅ Feature works end-to-end as specified
+
+**📖 Complete checklist**: [Quality Gates](./docs/quality-gates.md)
+
+❌ **VIOLATION**: Committing without precommit check, missing screenshots, failing tests
+✅ **COMPLIANCE**: All quality gates pass before marking complete
+
+---
+
+### 4. Phase Gates - REQUIRED (Proactive Quality)
+
+**WHEN**: At the END of EVERY phase
+**COMPLIANCE**: Run all three analyses, document findings
+
+**MANDATORY Phase Completion Sequence:**
+1. ✅ Run `zen analyze` (quality focus) → Document baseline in `tracking/knowledge-base/`
+2. ✅ Run `zen refactor` (codesmells) → Update `tracking/technical-debt-log.md`
+3. ✅ Run `zen analyze` (performance focus) → Update `tracking/performance-baseline.md`
+4. ✅ Address ALL critical/high severity issues before phase closure
+5. ✅ Create phase summary with all continuation IDs
+
+**Time Investment**: 15-20 minutes per phase
+**Value**: Prevents 50-70% of bugs from reaching later phases
+
+❌ **VIOLATION**: Completing a phase without running phase gates
+✅ **COMPLIANCE**: All three analyses run and documented
 
 ---
 
@@ -24,7 +123,6 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 | Document | Purpose | When to Use |
 |----------|---------|-------------|
-| **[Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)** | **Complete guide to Tier 1-3 improvements** | **Start here for overview of new features** |
 | [PRD Template](./docs/PRD.md) | Product Requirements Document template | Phase 0 planning, before using planner |
 | [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures and coordination | Project setup, team coordination |
 | [Project Management](./docs/project-management.md) | Phase-based planning and execution | Planning, tracking, delivery |
@@ -275,7 +373,7 @@ CONTINUOUS:
 └─ Track trends: Quality ↗️, Debt ↘️, Performance →
 ```
 
-**Full Details**: See [Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)
+**Full Details**: See the MANDATORY REQUIREMENTS section at the top of this document.
 
 ---
 

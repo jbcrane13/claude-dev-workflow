@@ -1,70 +1,54 @@
 # Claude Dev Workflow
 
-**Version**: 2.0  
-**Last Updated**: 2025-01-20  
+**Version**: 3.0
+**Last Updated**: 2025-01-30
 **License**: MIT
 
 ---
 
 ## 🎯 Overview
 
-A comprehensive, phase-based development workflow for AI agent teams building production-quality applications. **Version 2.0** introduces a paradigm shift from **reactive** (fixing problems) to **proactive** (preventing problems) development with systematic quality assurance, decision documentation, and knowledge preservation.
+A comprehensive, phase-based development workflow for AI agent teams building production-quality applications. This system provides:
 
-### Key Features
+- **Multi-Agent Coordination** - Parallel execution with coordinated oversight
+- **Phase-Based Development** - Incremental delivery of working features
+- **Mandatory Quality System** - Phase gates, ADRs, systematic validation
+- **Session Continuity** - Seamless handoffs across sessions
+- **Zen MCP Integration** - Enhanced collaboration through AI tools
+- **Production Ready** - Battle-tested patterns and practices
 
-- ✅ **Multi-Agent Coordination** - Parallel execution with coordinated oversight
-- ✅ **Phase-Based Development** - Incremental delivery of working features
-- ✅ **Proactive Quality System** ⭐ NEW - Phase gates, ADRs, systematic validation
-- ✅ **Technical Debt Monitoring** ⭐ NEW - Track trends before they become problems
-- ✅ **Performance Baselines** ⭐ NEW - Detect regressions early (>10% threshold)
-- ✅ **Knowledge Preservation** ⭐ NEW - Continuation IDs and structured learning
-- ✅ **Tool Chaining Patterns** ⭐ NEW - Proven sequences for common scenarios
-- ✅ **Session Continuity** - Seamless handoffs across sessions
-- ✅ **Zen MCP Integration** - Enhanced collaboration through AI tools
-- ✅ **Production Ready** - Battle-tested patterns and practices
-
-### 🆕 What's New in v2.0
-
-**Shift from Reactive to Proactive**:
-- **Before**: Tools used only when problems occur
-- **After**: Systematic prevention at every phase with mandatory quality gates
-
-**Expected Impact**:
-- 📉 50-70% reduction in bugs reaching later phases
-- 🎯 Better architectural decisions through multi-model validation
-- 📊 Visible quality, performance, and debt trends
-- 🧠 Institutional knowledge preserved across sessions
+**🚀 START HERE**: Read [claude.md](./claude.md) for the complete workflow
 
 ---
 
 ## 📚 Documentation
 
+### Primary Entry Point
+
+**[📖 claude.md](./claude.md)** - **START HERE** - Complete workflow with mandatory requirements
+
 ### Core Workflow Documents
 
 | Document | Purpose |
 |----------|---------|
-| [claude.md](./claude.md) | Master index and quick start guide |
-| [PRD Template](./docs/PRD.md) | Product Requirements Document template |
-| [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures |
+| [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures (with decision tree) |
+| [iOS Development](./docs/ios-development.md) | iOS technical standards (with mandatory rules) |
 | [Project Management](./docs/project-management.md) | Phase-based planning |
 | [Session Management](./docs/session-management.md) | Context preservation |
-| [iOS Development](./docs/ios-development.md) | iOS technical standards |
+| [Quality Gates](./docs/quality-gates.md) | Completion criteria |
 | [Testing Guidelines](./docs/testing-guidelines.md) | Testing requirements |
 | [Zen Tools Guide](./docs/zen-tools-guide.md) | MCP tool usage |
+| [Tool Chaining Patterns](./docs/tool-chaining-patterns.md) | Proven tool sequences |
 | [Mock Data Strategy](./docs/mock-data-strategy.md) | Data transition planning |
-| [Quality Gates](./docs/quality-gates.md) | Completion criteria |
 
-### ⭐ NEW: Proactive Quality System (v2.0)
+### Templates & Tracking
 
 | Document | Purpose |
 |----------|---------|
-| [**Workflow Improvements Summary**](./WORKFLOW-IMPROVEMENTS-SUMMARY.md) | Complete guide to v2.0 proactive system |
-| [**Tool Chaining Patterns**](./docs/tool-chaining-patterns.md) | 7 proven tool sequences for common scenarios |
-| [**ADR Template**](./docs/adr/template.md) | Architecture Decision Record template |
-| [**ADR Guide**](./docs/adr/README.md) | How to document architectural decisions |
-| [**Technical Debt Log**](./tracking/technical-debt-log.md) | Phase-by-phase debt tracking template |
-| [**Performance Baseline**](./tracking/performance-baseline.md) | Performance regression detection template |
-| [**Retrospective Template**](./tracking/knowledge-base/retrospectives/template.md) | Phase retrospective template |
+| [PRD Template](./docs/PRD.md) | Product Requirements Document |
+| [ADR Template](./docs/adr/template.md) | Architecture Decision Records |
+| [Technical Debt Log](./tracking/technical-debt-log.md) | Debt tracking template |
+| [Performance Baseline](./tracking/performance-baseline.md) | Performance monitoring |
 
 ---
 
@@ -75,25 +59,24 @@ A comprehensive, phase-based development workflow for AI agent teams building pr
 ```bash
 # 1. Clone this repository
 git clone https://github.com/yourusername/claude-dev-workflow.git
+cd claude-dev-workflow
 
-# 2. Navigate to deployment scripts
-cd claude-dev-workflow/scripts
+# 2. Deploy iOS project
+./scripts/deploy-ios-project.sh "MyApp" "/path/to/projects"
 
-# 3. Run iOS project deployment script
-./deploy-ios-project.sh "MyAwesomeApp" "/path/to/create/project"
+# 3. Read the workflow documentation
+cat claude.md  # Start here - includes MANDATORY requirements
 
-# 4. Follow the workflow
-# - Start with claude.md for overview
-# - Review docs/ios-development.md for iOS standards
-# - Use docs/project-management.md for phase planning
+# 4. Review iOS standards
+cat docs/ios-development.md  # iOS mandatory rules at top
 ```
 
 ### For Other Project Types
 
 Coming soon:
-- Android deployment script
-- Web application deployment script
-- General software deployment script
+- Android deployment script (v3.1)
+- Web application deployment script (v3.2)
+- General software deployment script (v3.3)
 
 ---
 
@@ -101,173 +84,126 @@ Coming soon:
 
 ```
 claude-dev-workflow/
-├── README.md                                      # This file
-├── LICENSE                                        # MIT License
-├── claude.md                                      # Master workflow index
-├── WORKFLOW-IMPROVEMENTS-SUMMARY.md               # ⭐ NEW: v2.0 proactive system guide
+├── README.md                          # This file - quick overview
+├── claude.md                          # ⚠️ START HERE - complete workflow
+├── QUICK_REFERENCE.md                 # One-page quick reference
 │
-├── docs/                                          # Complete documentation
-│   ├── PRD.md                                     # Product Requirements Document template
-│   ├── agent-deployment.md                        # Team structures
-│   ├── project-management.md                      # Phase planning
-│   ├── session-management.md                      # Continuity practices
-│   ├── ios-development.md                         # iOS standards
-│   ├── testing-guidelines.md                      # Testing requirements
-│   ├── zen-tools-guide.md                         # Zen MCP tools (updated v2.0)
-│   ├── mock-data-strategy.md                      # Data strategy
-│   ├── quality-gates.md                           # Completion criteria (updated v2.0)
-│   ├── tool-chaining-patterns.md                  # ⭐ NEW: Tool sequence patterns
-│   └── adr/                                       # ⭐ NEW: Architecture Decision Records
-│       ├── README.md                              #   ADR guide
-│       └── template.md                            #   ADR template
+├── docs/                              # Complete documentation (9 guides)
+│   ├── agent-deployment.md            # Team structures + decision tree
+│   ├── ios-development.md             # iOS standards + mandatory rules
+│   ├── project-management.md          # Phase planning
+│   ├── session-management.md          # Context preservation
+│   ├── quality-gates.md               # Completion criteria
+│   ├── testing-guidelines.md          # Testing requirements
+│   ├── zen-tools-guide.md             # MCP tool usage
+│   ├── tool-chaining-patterns.md      # Tool sequences
+│   ├── mock-data-strategy.md          # Data strategy
+│   ├── PRD.md                         # PRD template
+│   └── adr/                           # Architecture Decision Records
+│       ├── README.md                  # ADR guide
+│       └── template.md                # ADR template
 │
-├── templates/                                     # Project templates
-│   ├── ios/                                       # iOS project template
-│   │   ├── project-structure.md                   # Structure guide
-│   │   └── .gitignore                             # iOS gitignore
-│   ├── android/                                   # [Coming soon]
-│   └── web/                                       # [Coming soon]
+├── templates/                         # Project templates
+│   └── ios/                           # iOS project template
 │
-├── tracking/                                      # Template tracking files
-│   ├── session-state.md                           # Session state template
-│   ├── phase-status.md                            # Phase tracking template
-│   ├── mock-data-registry.md                      # Mock data template
-│   ├── technical-debt-log.md                      # ⭐ NEW: Debt tracking
-│   ├── performance-baseline.md                    # ⭐ NEW: Performance monitoring
-│   ├── knowledge-base/                            # ⭐ NEW: Knowledge preservation
-│   │   ├── architecture-decisions/                #   ADR tool outputs
-│   │   ├── performance-analysis/                  #   Performance reports
-│   │   ├── technical-debt/                        #   Refactor outputs
-│   │   └── retrospectives/                        #   Phase retrospectives
-│   │       └── template.md                        #   Retrospective template
-│   └── screenshots/                               # Screenshots directory
-│       └── README.md                              # Screenshot guide
+├── tracking/                          # Tracking templates
+│   ├── session-state.md               # Session state
+│   ├── phase-status.md                # Phase progress
+│   ├── mock-data-registry.md          # Mock data tracking
+│   ├── technical-debt-log.md          # Debt monitoring
+│   ├── performance-baseline.md        # Performance tracking
+│   └── knowledge-base/                # Knowledge preservation
 │
-├── scripts/                                       # Deployment scripts
-│   ├── deploy-ios-project.sh                      # iOS project setup (updated v2.0)
-│   ├── deploy-android-project.sh                  # [Coming soon]
-│   └── deploy-web-project.sh                      # [Coming soon]
+├── scripts/                           # Deployment scripts
+│   └── deploy-ios-project.sh          # iOS project setup
 │
-└── examples/                                      # Example projects
-    ├── ios-task-app/                              # Complete iOS example
-    └── README.md                                  # Examples guide
+└── examples/                          # Example projects (coming)
 ```
 
 ---
 
 ## 🎭 Supported Project Types
 
-### ✅ Currently Supported
+### ✅ Fully Supported
 
-- **iOS Applications** (Swift, SwiftUI, SwiftData)
-  - Full deployment script
-  - Complete documentation
-  - Example project
-  - Template files
+**iOS Applications** (Swift, SwiftUI, SwiftData)
+- Complete deployment script
+- Mandatory technical standards
+- Example project (coming)
+- 5-agent team structure
 
-### 🔄 Coming Soon
+### 🚧 Coming Soon
 
-- **Android Applications** (Kotlin, Jetpack Compose)
-- **Web Applications** (React, Vue, Angular)
-- **Backend Services** (Node.js, Python, Go)
-- **General Software** (Any language/framework)
+- **Android Applications** (Kotlin, Jetpack Compose) - v3.1
+- **Web Applications** (React, Vue, Next.js) - v3.2
+- **Backend Services** (Node.js, Python, Go) - v3.3
 
 ---
 
-## 🤖 Agent Team Structures
+## 🤖 Multi-Agent Teams
 
-### iOS Development Team (5 agents)
+### iOS Development Team (5 Agents)
 
-```yaml
-Team: ios-development
-Size: 5 agents
-Mode: Parallel with coordination
+```
+Coordinator Agent
+└── Manages workflow, ensures quality gates
 
-Roles:
-  - Coordinator Agent (1)
-    → Manages workflow, ensures quality
-    
-  - Architecture Agent (1)
-    → SwiftUI architecture, SwiftData models
-    
-  - Feature Development Agents (2)
-    → Parallel feature implementation
-    
-  - Testing Agent (1)
-    → Unit/UI tests, quality verification
+Architecture Agent
+└── SwiftUI/SwiftData design
+
+Feature Agents (2x)
+└── Parallel implementation
+
+Testing Agent
+└── Quality verification
 ```
 
-See [Agent Deployment Guide](./docs/agent-deployment.md) for complete team structures.
+**When to Deploy Teams**: See decision tree in [agent-deployment.md](./docs/agent-deployment.md)
+
+### Web Application Team (6 Agents)
+
+```
+Coordinator + Backend + Frontend + UI + Database + Testing
+```
+
+**See**: [Agent Deployment Guide](./docs/agent-deployment.md) for complete structures
+
+---
+
+## ✅ Mandatory Requirements
+
+**Before starting ANY work, you MUST:**
+
+1. **Deploy Multi-Agent Team** (for projects with 3+ features)
+2. **Follow Platform Standards** (iOS: SwiftUI, SwiftData, @Observable only)
+3. **Pass Quality Gates** (zen precommit, screenshots, tests, builds)
+4. **Run Phase Gates** (analyze + refactor + analyze at every phase end)
+
+**See**: [claude.md - MANDATORY REQUIREMENTS section](./claude.md#%EF%B8%8F-mandatory-requirements-read-first) for complete details
 
 ---
 
 ## 📋 Development Workflow
 
-### Phase Structure with Proactive Quality ⭐
-
 ```
 Phase 0: Foundation & Planning
    ↓
+   Deploy Multi-Agent Team
+   ↓
 Phase 1: Core P1 Features (MVP)
    ↓
-   🚦 MANDATORY PHASE GATE (NEW in v2.0)
-   - analyze (quality) → baseline
-   - refactor (debt) → track trends
-   - analyze (performance) → detect regressions
-   ↓
-Phase 2: Enhanced P1 + P2 Features
-   ↓
    🚦 MANDATORY PHASE GATE
-   - Compare to previous phase
-   - Address CRITICAL/HIGH issues
-   - Update trend tracking
    ↓
-Phase 3: P3 Features + Polish
+Phase 2: Enhanced Features
    ↓
    🚦 MANDATORY PHASE GATE
    ↓
 Phase N: Production Ready
 ```
 
-### Quality Gates
-
-**Every Task** must pass:
-- ✅ Code quality checks
-- ✅ Functionality verification
-- ✅ Tests passing
-- ✅ Build successful
-- ✅ Screenshot evidence
-- ✅ Documentation complete
-
-**Every Phase** must pass ⭐ NEW:
-- ✅ Quality baseline analysis (`analyze`)
-- ✅ Technical debt analysis (`refactor`)
-- ✅ Performance regression check (`analyze` performance)
-- ✅ CRITICAL/HIGH issues addressed
-- ✅ Trends documented (improving/stable/declining)
-
-See [Quality Gates](./docs/quality-gates.md) for complete checklist.
-
----
-
-## 🔧 Zen MCP Tools Integration
-
-### Available Tools
-
-| Tool | Purpose | When to Use | v2.0 Usage ⭐ |
-|------|---------|-------------|---------------|
-| `planner` | Project breakdown | Phase 0, Planning | Initial planning with PRD |
-| `analyze` | Codebase analysis | Throughout development | **Phase gates (quality + performance)** |
-| `refactor` | Code improvement | Phase 2+ | **Phase gates (debt tracking)** |
-| `codereview` | Quality verification | Before completion | Before all commits |
-| `debug` | Issue resolution | When problems arise | Bug investigations |
-| `precommit` | Final verification | **Before EVERY commit** | **Mandatory (100% compliance)** |
-| `consensus` | Team alignment | Major decisions | **ADR workflow** |
-| `challenge` | Question assumptions | Major decisions | **ADR workflow** |
-| `thinkdeep` | Deep analysis | Complex problems | ADR workflow, debugging |
-| `apilookup` | API documentation | Dependency updates | Proactive monitoring |
-
-See [Zen Tools Guide](./docs/zen-tools-guide.md) and [Tool Chaining Patterns](./docs/tool-chaining-patterns.md) for detailed usage.
+**Quality Gates at EVERY level:**
+- Task: precommit, screenshot, tests, build
+- Phase: analyze, refactor, analyze (performance)
 
 ---
 
@@ -275,101 +211,43 @@ See [Zen Tools Guide](./docs/zen-tools-guide.md) and [Tool Chaining Patterns](./
 
 **Critical Requirement**: Nothing is complete without screenshot proof!
 
-Every feature must have:
-- Screenshot showing functionality
-- Screenshot of success state
-- Screenshot of error state (if applicable)
-
-Screenshots stored in: `tracking/screenshots/`
+```
+tracking/screenshots/
+├── phase1-feature-name.png
+├── phase2-feature-name.png
+└── phase3-feature-name.png
+```
 
 ---
 
-## ⚡ Proactive Quality System (v2.0)
+## 🔧 Zen MCP Tools
 
-### Three-Tier Implementation
+| Tool | Purpose | Required When |
+|------|---------|---------------|
+| `planner` | Project breakdown | Phase 0, planning |
+| `analyze` | Codebase analysis | **Phase gates (mandatory)** |
+| `refactor` | Code improvement | **Phase gates (mandatory)** |
+| `codereview` | Quality verification | Before completion |
+| `debug` | Issue resolution | When problems arise |
+| `precommit` | Final verification | **Before EVERY commit (mandatory)** |
+| `consensus` | Team alignment | Major decisions (ADRs) |
 
-**Tier 1: Mandatory (High Impact, Easy)**
-- 🚦 **Phase Gate Validations** - Run at EVERY phase end (15-20 min)
-  - `analyze` (quality) → Establish baseline
-  - `refactor` (codesmells) → Track technical debt
-  - `analyze` (performance) → Detect regressions >10%
-
-- 📋 **Architecture Decision Records (ADRs)** - Document major decisions (20-30 min)
-  - `challenge` → Question assumptions
-  - `consensus` → Multi-model validation (for/against/neutral)
-  - `thinkdeep` → Deep investigation (optional)
-  - Document with continuation IDs
-
-- 📊 **Technical Debt Monitoring** - Track trends every phase (10-15 min)
-  - Phase-by-phase tracking
-  - Severity classification (CRITICAL/HIGH/MEDIUM/LOW)
-  - Trend analysis: ⬆️ Increasing / ➡️ Stable / ⬇️ Decreasing
-
-**Tier 2: High Value (Moderate Effort)**
-- 📈 **Performance Baselines** - Establish and monitor (30 min initial, 15 min/phase)
-  - Platform-specific metrics (build time, launch time, memory, size)
-  - Regression detection (>10% threshold)
-  - Baseline comparison
-
-- 🔗 **Tool Chaining Patterns** - Follow proven sequences
-  - 7 documented patterns for common scenarios
-  - Continuation ID management
-  - Context preservation across tools
-
-- 🧠 **Knowledge Base System** - Preserve institutional knowledge
-  - Structured storage of tool outputs
-  - ADR documentation
-  - Performance and debt reports
-  - Phase retrospectives
-
-**Tier 3: Advanced (Future Optimization)**
-- 🔄 **Cross-Phase Retrospectives** - Learn and improve
-- 🔍 **Dependency Monitoring** - Proactive API/SDK tracking
-
-### Quick Reference
-
-**End of Every Phase** (Mandatory):
-```yaml
-1. ✅ analyze (quality) → Save continuation_id → Document
-2. ✅ refactor (debt) → Save continuation_id → Document
-3. ✅ analyze (performance) → Save continuation_id → Document
-4. ✅ Address CRITICAL/HIGH issues
-5. ✅ Create phase-X-summary.md with all continuation IDs
-6. ✅ Update trend tracking
-
-Time: 15-20 minutes
-Value: Prevents 50-70% of future issues
-```
-
-**Major Decisions** (Recommended):
-```yaml
-1. ✅ challenge → Question assumptions
-2. ✅ consensus → Multi-model validation
-3. ✅ (Optional) thinkdeep → Deep dive
-4. ✅ Create ADR-NNN.md with continuation IDs
-
-Time: 20-30 minutes
-Value: Better decisions, preserved knowledge
-```
-
-See [WORKFLOW-IMPROVEMENTS-SUMMARY.md](./WORKFLOW-IMPROVEMENTS-SUMMARY.md) for complete details.
+**See**: [Zen Tools Guide](./docs/zen-tools-guide.md) for complete usage
 
 ---
 
 ## 🎯 Getting Started Checklist
 
-### New Project Setup
+**New Project Setup:**
 
-- [ ] Read [claude.md](./claude.md) master index
-- [ ] Create [PRD](./docs/PRD.md) defining product requirements
-- [ ] Review [Agent Deployment](./docs/agent-deployment.md)
-- [ ] Select appropriate team structure
+- [ ] Clone this repository
+- [ ] **Read [claude.md](./claude.md) completely** (includes MANDATORY requirements)
+- [ ] Review [agent-deployment.md](./docs/agent-deployment.md) decision tree
+- [ ] For iOS: Read [ios-development.md](./docs/ios-development.md) mandatory rules
 - [ ] Run deployment script for your platform
-- [ ] Review technical guidelines (iOS, Web, etc.)
-- [ ] Use Zen `planner` with PRD to create project plan
-- [ ] Define Phase 0-N in project-management format
-- [ ] Set up session management tracking
-- [ ] Initialize mock data registry
+- [ ] Deploy multi-agent team (if applicable)
+- [ ] Create PRD using [PRD template](./docs/PRD.md)
+- [ ] Use zen `planner` with PRD to create project plan
 - [ ] Begin Phase 0: Foundation
 
 ---
@@ -377,119 +255,91 @@ See [WORKFLOW-IMPROVEMENTS-SUMMARY.md](./WORKFLOW-IMPROVEMENTS-SUMMARY.md) for c
 ## 💡 Best Practices
 
 ### Planning
-1. Use Zen `planner` for breakdown
-2. Identify P1 features early
-3. Plan all phases upfront
-4. Update plans as you learn
+- Use zen `planner` for breakdown
+- Define phases upfront
+- Identify P1 features early
 
 ### Execution
-1. Focus on one phase at a time
-2. Complete tasks fully before moving on
-3. Never skip quality gates
-4. Document all decisions
+- Deploy teams for 3+ feature projects
+- Focus on one phase at a time
+- **Never skip quality gates**
+- **Never skip phase gates**
 
 ### Quality
-1. Test continuously
-2. Build frequently
-3. Screenshot everything
-4. Review before completion (Zen `codereview`)
-
-### Communication
-1. Update phase status daily
-2. Document blockers immediately
-3. Celebrate phase completions
-4. Learn from retrospectives (Zen `consensus`)
+- Run zen `precommit` before every commit
+- Capture screenshots for every feature
+- Test continuously (≥70% coverage)
+- Build frequently
 
 ---
 
-## 📦 Installation & Usage
-
-### Prerequisites
-
-- Git
-- For iOS: Xcode 15+, macOS
-- For Web: Node.js 18+, npm/yarn
-- For Android: Android Studio, JDK 17+
-
-### Clone Repository
+## 📦 Installation
 
 ```bash
+# Clone repository
 git clone https://github.com/yourusername/claude-dev-workflow.git
 cd claude-dev-workflow
-```
 
-### Deploy iOS Project
-
-```bash
-# Make script executable
+# Deploy iOS project
 chmod +x scripts/deploy-ios-project.sh
+./scripts/deploy-ios-project.sh "MyApp" "~/Projects"
 
-# Run deployment
-./scripts/deploy-ios-project.sh "MyApp" "/path/to/projects"
-
-# This creates:
-# /path/to/projects/MyApp/
-#   ├── MyApp.xcodeproj
-#   ├── MyApp/
-#   ├── Tests/
-#   ├── tracking/
-#   ├── docs/
-#   └── README.md
+# Start development
+cd ~/Projects/MyApp
+cat claude.md  # Read workflow
 ```
-
-### Start Development
-
-```bash
-cd /path/to/projects/MyApp
-
-# 1. Review workflow docs
-open docs/claude.md
-
-# 2. Plan Phase 0
-# Use Zen planner tool
-
-# 3. Begin development
-# Follow phase-based workflow
-```
-
----
-
-## 🔄 Continuous Improvement
-
-### After Each Phase
-
-1. Retrospective (Zen `consensus`)
-2. Update processes if needed
-3. Refine quality gates
-4. Improve agent coordination
-
-### Documentation Updates
-
-- Version all changes
-- Track what works/doesn't work
-- Evolve best practices
-- Share learnings
 
 ---
 
 ## 🤝 Contributing
 
-Contributions welcome! Please:
+We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-1. Fork the repository
-2. Create a feature branch
-3. Follow existing documentation style
-4. Test deployment scripts
-5. Submit pull request
+**High Priority:**
+- Android deployment script
+- Web deployment scripts
+- Example projects
+- Documentation improvements
 
-### Areas for Contribution
+---
 
-- [ ] Android deployment script
-- [ ] Web application templates
-- [ ] Additional example projects
-- [ ] Documentation improvements
-- [ ] Tool integrations
-- [ ] Best practice examples
+## 📊 Version History
+
+### v3.0 (Current) - Documentation Clarity & Enforcement 🎉
+
+**Released**: January 30, 2025
+
+**Major Changes:**
+- ✅ **MANDATORY REQUIREMENTS** section added to claude.md (cannot be missed)
+- ✅ **Decision tree** added to agent-deployment.md (clear when to spawn teams)
+- ✅ **Mandatory rules** added to ios-development.md (zero tolerance for violations)
+- ✅ **51% documentation reduction** (15,476 → ~7,500 lines)
+- ✅ **Removed 4 redundant files** (consolidated overlapping content)
+- ✅ **Clear enforcement hierarchy** (MUST vs SHOULD vs OPTIONAL)
+
+**Why v3.0:**
+Agents were missing critical instructions (team spawning, iOS guidelines) because they were buried in 15K+ lines of documentation. v3.0 puts mandatory requirements front and center with clear enforcement.
+
+### v2.0 - Proactive Quality System
+
+**Released**: January 20, 2025
+
+- Phase gates (analyze + refactor + analyze)
+- Architecture Decision Records (ADRs)
+- Technical debt monitoring
+- Performance baselines
+- Tool chaining patterns
+- Knowledge preservation
+
+### v1.0 - Initial Release
+
+**Released**: January 20, 2025
+
+- Complete iOS workflow
+- Multi-agent coordination
+- Phase-based development
+- Quality gates
+- Zen MCP integration
 
 ---
 
@@ -499,182 +349,32 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 ---
 
-## 🆘 Support & Resources
+## 🆘 Support
 
 ### Documentation
-
-- Start here: [claude.md](./claude.md)
-- Full guides: [docs/](./docs/)
-- Examples: [examples/](./examples/)
-
-### Getting Help
-
-- Review [Session Management](./docs/session-management.md) for context issues
-- Check [Quality Gates](./docs/quality-gates.md) for completion questions
-- See [Zen Tools Guide](./docs/zen-tools-guide.md) for tool usage
-- Review technical guides for platform-specific issues
+- **Start here**: [claude.md](./claude.md)
+- **Quick reference**: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md)
+- **Full guides**: [docs/](./docs/)
 
 ### Common Issues
 
-**Build Failures**
-1. Use Zen `debug` for root cause
-2. Review [Testing Guidelines](./docs/testing-guidelines.md)
-3. Check [Quality Gates](./docs/quality-gates.md)
-
-**Agent Coordination**
-1. Review [Agent Deployment](./docs/agent-deployment.md)
-2. Use Zen `consensus` for alignment
-3. Coordinator intervention
-
-**Lost Context**
-1. Check [Session Management](./docs/session-management.md)
-2. Review session state files
-3. Reconstruct from git history
+**Build Failures** → Use zen `debug`, review quality gates
+**Agent Coordination** → Review agent-deployment.md decision tree
+**Lost Context** → Check session-management.md
 
 ---
 
-## 🎓 Learning Path
+## ⭐ Key Takeaways
 
-### Beginners
-
-1. Read [claude.md](./claude.md) overview
-2. Review [Project Management](./docs/project-management.md)
-3. Try iOS deployment script
-4. Follow example project
-
-### Intermediate
-
-1. Deep dive into [Agent Deployment](./docs/agent-deployment.md)
-2. Master [Zen Tools Guide](./docs/zen-tools-guide.md)
-3. Implement custom team structure
-4. Contribute improvements
-
-### Advanced
-
-1. Create custom deployment scripts
-2. Extend workflow for new platforms
-3. Optimize agent coordination
-4. Build automated quality gates
+1. **📖 Read [claude.md](./claude.md) first** - MANDATORY requirements at the top
+2. **🤖 Deploy teams for 3+ feature projects** - Use decision tree
+3. **📱 iOS: Follow mandatory tech stack** - SwiftUI, SwiftData, @Observable only
+4. **✅ Pass all quality gates** - precommit before every commit
+5. **🚦 Run phase gates** - analyze + refactor + analyze at every phase end
+6. **📸 Screenshot everything** - Nothing complete without proof
 
 ---
 
-## 📊 Project Status
+**Built with ❤️ for AI-powered development teams**
 
-### Version 2.0 (Current) - Proactive Quality Release 🎉
-
-**Released**: January 20, 2025
-
-**Core Features**:
-- ✅ Complete iOS workflow
-- ✅ Full documentation set
-- ✅ iOS deployment script
-- ✅ Example projects
-- ✅ Quality gates
-- ✅ Zen tools integration
-
-**🆕 Proactive Quality System** (v2.0):
-- ✅ **Mandatory Phase Gates** - 3-step validation at every phase end
-- ✅ **Architecture Decision Records (ADRs)** - Formal decision documentation
-- ✅ **Technical Debt Monitoring** - Phase-by-phase trend tracking
-- ✅ **Performance Baselines** - Regression detection (>10% threshold)
-- ✅ **Tool Chaining Patterns** - 7 proven sequences documented
-- ✅ **Knowledge Base System** - Structured preservation with continuation IDs
-- ✅ **Retrospective Templates** - Phase-level learning framework
-- ✅ **Platform-Agnostic Design** - iOS, Android, Web, Backend ready
-
-**Expected Impact**:
-- 📉 50-70% reduction in bugs reaching later phases
-- 🎯 Better architectural decisions (multi-model validation)
-- 📊 Visible quality/performance/debt trends
-- 🧠 Institutional knowledge preserved
-
-### Roadmap
-
-**Version 2.1** (Q1 2025)
-- [ ] Android deployment script with v2.0 proactive features
-- [ ] Android documentation
-- [ ] Android example project
-
-**Version 2.2** (Q2 2025)
-- [ ] Web application deployment with v2.0 proactive features
-- [ ] Web documentation
-- [ ] Web example projects
-
-**Version 3.0** (Q3 2025)
-- [ ] Multi-platform orchestration
-- [ ] Advanced automation
-- [ ] CI/CD integration
-- [ ] Performance metrics dashboard
-
----
-
-## ⭐ Acknowledgments
-
-Built for AI agent teams working with Claude, leveraging Zen MCP tools for enhanced collaboration and productivity.
-
-Special thanks to:
-- Anthropic Claude team
-- Zen MCP developers
-- Open source community
-
----
-
-## 📞 Contact
-
-- Issues: [GitHub Issues](https://github.com/yourusername/claude-dev-workflow/issues)
-- Discussions: [GitHub Discussions](https://github.com/yourusername/claude-dev-workflow/discussions)
-
----
-
-## 🚀 Getting the Most Out of v2.0
-
-### For New Users
-
-**Start Here**:
-1. Read [WORKFLOW-IMPROVEMENTS-SUMMARY.md](./WORKFLOW-IMPROVEMENTS-SUMMARY.md) - Complete v2.0 guide
-2. Review [Tool Chaining Patterns](./docs/tool-chaining-patterns.md) - Learn proven sequences
-3. Deploy your first iOS project with `./scripts/deploy-ios-project.sh`
-4. Use phase gates at end of Phase 1
-
-**First Phase Checklist**:
-- [ ] Run `planner` with PRD for project breakdown
-- [ ] Implement P1 features
-- [ ] **End of phase**: Run phase gates (analyze + refactor + analyze perf)
-- [ ] Document findings with continuation IDs
-- [ ] Create first ADR for a major decision
-
-### For Existing Users
-
-**Upgrade Path**:
-1. Pull latest version: `git pull origin main`
-2. Run analyze + refactor on current codebase to establish baseline
-3. Start using phase gates at next phase completion
-4. Create ADRs for upcoming major decisions
-5. Gradually adopt Tier 2 & 3 features
-
-**Key Changes in v2.0**:
-- ✅ Phase gates are now **MANDATORY** at every phase end
-- ✅ `precommit` should be run before **EVERY** commit (100% compliance)
-- ✅ Major decisions should use ADR workflow (challenge → consensus)
-- ✅ Technical debt and performance tracked every phase
-- ✅ Continuation IDs preserved for knowledge reuse
-
-### Success Metrics to Track
-
-Monitor these to measure v2.0 effectiveness:
-1. **Phase Gate Compliance**: 100% (run at every phase)
-2. **Technical Debt Trend**: Stable or decreasing
-3. **Performance Regressions**: <10% per phase
-4. **ADRs Created**: ≥1 per phase (for non-trivial projects)
-5. **Quality Score Trend**: Improving or stable
-6. **Precommit Compliance**: 100%
-
----
-
-**Remember**: Nothing is complete until it builds, runs, and has screenshot proof! 📸
-
-**New in v2.0**: Nothing is quality-assured until phase gates pass! 🚦
-
----
-
-**Made with ❤️ for AI-powered development teams**
+**Ready to start?** → **[Read claude.md](./claude.md)**
