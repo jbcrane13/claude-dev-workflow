@@ -123,7 +123,6 @@ This documentation provides a complete, phase-based development workflow for AI 
 
 | Document | Purpose | When to Use |
 |----------|---------|-------------|
-| **[Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)** | **Complete guide to Tier 1-3 improvements** | **Start here for overview of new features** |
 | [PRD Template](./docs/PRD.md) | Product Requirements Document template | Phase 0 planning, before using planner |
 | [Agent Deployment](./docs/agent-deployment.md) | Multi-agent team structures and coordination | Project setup, team coordination |
 | [Project Management](./docs/project-management.md) | Phase-based planning and execution | Planning, tracking, delivery |
@@ -374,7 +373,7 @@ CONTINUOUS:
 └─ Track trends: Quality ↗️, Debt ↘️, Performance →
 ```
 
-**Full Details**: See [Workflow Improvements Summary](./WORKFLOW-IMPROVEMENTS-SUMMARY.md)
+**Full Details**: See the MANDATORY REQUIREMENTS section at the top of this document.
 
 ---
 
