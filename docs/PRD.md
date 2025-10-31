@@ -8,6 +8,74 @@
 
 ---
 
+## ⚠️ WORKFLOW INTEGRATION (READ FIRST!)
+
+**This PRD template is designed to work with the Claude Dev Workflow v3.1+**
+
+### Before You Start
+
+**MANDATORY CHECKLIST**:
+- [ ] Read [claude.md - MANDATORY REQUIREMENTS](../claude.md#⚠️-mandatory-requirements-read-first) section
+- [ ] Understand multi-agent deployment criteria (3+ features = deploy team)
+- [ ] Know platform-specific mandatory tech standards (if iOS: SwiftUI, SwiftData, @Observable only)
+- [ ] Understand quality gates (precommit, phase gates, screenshot evidence)
+
+### How This PRD Integrates with Workflow
+
+**Phase 0: PRD Creation**
+1. ✅ Fill out this entire template
+2. ✅ Get stakeholder approval
+3. ✅ Use completed PRD with zen `planner` tool:
+   ```yaml
+   Tool: zen:planner
+   model: "gemini-2.5-pro"
+   step: "Break down [Project Name] PRD into detailed phase plan with dependencies"
+   # Attach: This completed PRD
+   ```
+
+**During Development**
+- **Major Technical Decisions**: Create ADRs (see [ADR Guide](./adr/README.md))
+  - Use tool chain: `challenge` → `consensus` → (optional) `clink` → ADR
+- **Critical Scenarios**: Use `clink` for external AI perspectives
+  - Security reviews, complex bugs, high-stakes decisions
+- **Phase Completions**: Run mandatory phase gates
+  - `analyze` (quality) → `refactor` (debt) → `analyze` (performance)
+
+**Quality Requirements**
+- ✅ Every commit requires zen `precommit` tool (MANDATORY)
+- ✅ Every feature requires screenshot evidence
+- ✅ Every phase requires phase gate validation
+- ✅ Build + tests must pass before completion
+
+**Multi-Agent Teams**
+- If 3+ features in P1/P2: **MUST deploy multi-agent team** (see [Agent Deployment](./agent-deployment.md))
+- Coordinator ensures all agents follow this PRD
+
+### Zen Tools Quick Reference for PRD Workflow
+
+**Phase 0 - Planning**:
+- `planner`: Break down completed PRD into detailed project plan
+- `thinkdeep`: Architecture decisions (save continuation_id)
+- `challenge`: Question technical assumptions before committing
+- `consensus`: Multi-model analysis for major decisions
+- `clink`: (Optional) External AI perspective for critical decisions
+
+**During Development**:
+- `chat`: Day-to-day assistance and questions
+- `apilookup`: Latest API documentation
+- `debug`: Issue resolution when problems arise
+- `codereview`: Quality checks before task completion
+- `precommit`: **MANDATORY** before EVERY commit
+
+**Phase Completion**:
+- `analyze` (quality): Establish quality baseline
+- `refactor` (debt): Identify technical debt
+- `analyze` (performance): Measure performance metrics
+
+**See**: [Zen Tools Guide](./zen-tools-guide.md) | [Tool Chaining Patterns](./tool-chaining-patterns.md)
+
+---
+
 ## 📋 Document Control
 
 | Version | Date | Author | Changes |
@@ -201,9 +269,12 @@
 ### Platform-Specific Guidelines
 
 **iOS** (if applicable):
+- ⚠️ **MANDATORY**: Follow [iOS Development Standards](./ios-development.md) - ZERO TOLERANCE
+  - **MUST USE**: SwiftUI, SwiftData, @Observable, async/await, NavigationStack
+  - **FORBIDDEN**: UIKit (except when SwiftUI lacks APIs), Core Data, Combine/@Published/@ObservableObject/@StateObject
+  - Target: iOS 17.0+ minimum
 - Follow iOS Human Interface Guidelines
 - Use native SwiftUI components
-- Support iOS [minimum version]
 - Dark mode support: [Yes/No]
 
 **Web** (if applicable):
@@ -230,11 +301,26 @@
 
 **Primary Platform**: [iOS/Web/Android/etc.]
 **Minimum Versions**: [Specify]
+
 **Technology Stack**:
 - Frontend: [Framework/Language]
+  - ⚠️ **iOS Projects**: See mandatory tech stack in [iOS Development](./ios-development.md)
+  - **REQUIRED**: SwiftUI, SwiftData, @Observable (iOS 17+)
 - Backend: [If applicable]
 - Database: [Technology]
+  - **iOS**: SwiftData only (Core Data forbidden)
 - APIs: [Third-party services]
+
+**⚠️ Major Technical Decisions**:
+- All significant technology/architecture choices MUST be documented as ADRs
+- Use tool chain: `challenge` → `consensus` → (optional) `clink` → Create ADR
+- See: [ADR Guide](./adr/README.md) and [Tool Chaining Patterns](./tool-chaining-patterns.md)
+- Examples of ADR-worthy decisions:
+  - State management approach
+  - Data persistence strategy
+  - API architecture (REST vs GraphQL)
+  - Navigation patterns
+  - Major framework/library choices
 
 ### Performance Requirements
 - App launch time: [< X seconds]
@@ -298,26 +384,41 @@
 
 ### Phase 0: Foundation (Estimated: [duration])
 - [ ] PRD finalized and approved
-- [ ] Architecture design complete
-- [ ] Technology stack confirmed
+- [ ] Use zen `planner` with completed PRD to create detailed project plan
+- [ ] Multi-agent team deployed (if 3+ features)
+- [ ] Architecture design complete (ADRs for major decisions)
+- [ ] Technology stack confirmed (mandatory standards followed)
 - [ ] Project structure initialized
+- [ ] Quality gate criteria defined
 
 ### Phase 1: MVP (Estimated: [duration])
 - [ ] All P1 features implemented
 - [ ] Core user flows functional
-- [ ] Tests passing
+- [ ] All features have screenshot evidence
+- [ ] Tests passing (≥70% coverage)
+- [ ] All commits passed zen `precommit`
+- [ ] **🚦 MANDATORY PHASE GATE**: Run analyze + refactor + analyze (performance)
+- [ ] All CRITICAL/HIGH issues from phase gate resolved
 - [ ] Ready for internal testing
 
 ### Phase 2: Enhanced Features (Estimated: [duration])
 - [ ] P2 features implemented
 - [ ] UI/UX improvements
 - [ ] Performance optimization
+- [ ] Screenshot evidence for all features
+- [ ] Tests passing
+- [ ] **🚦 MANDATORY PHASE GATE**: Run analyze + refactor + analyze (performance)
+- [ ] Technical debt trend monitored (see tracking/technical-debt-log.md)
+- [ ] Performance baseline updated (see tracking/performance-baseline.md)
 - [ ] Ready for beta testing
 
 ### Phase 3: Launch Preparation (Estimated: [duration])
 - [ ] All P3 features complete
 - [ ] Production build ready
 - [ ] App Store/deployment assets ready
+- [ ] **🚦 MANDATORY PHASE GATE**: Final quality validation
+- [ ] All phase gates passed
+- [ ] No CRITICAL or HIGH severity issues
 - [ ] Launch plan executed
 
 ---
@@ -411,12 +512,46 @@
 ---
 
 **Instructions for Use**:
-1. Copy this template for your project
-2. Fill in all sections during Phase 0
-3. Review with team and stakeholders
-4. Get approval before using Zen `planner`
-5. Reference PRD throughout development
-6. Update as requirements evolve
-7. Maintain version history
 
-**Remember**: A well-defined PRD is the foundation for successful project planning with Zen `planner`!
+**Phase 0 - PRD Creation**:
+1. ✅ Read [claude.md - MANDATORY REQUIREMENTS](../claude.md#⚠️-mandatory-requirements-read-first) first
+2. ✅ Copy this template for your project
+3. ✅ Fill in ALL sections completely
+4. ✅ For iOS: Verify tech stack follows [iOS Development Standards](./ios-development.md)
+5. ✅ Review with team and stakeholders
+6. ✅ Get formal approval (sign-off section)
+
+**Phase 0 - Project Planning**:
+7. ✅ Use zen `planner` with completed PRD:
+   ```yaml
+   Tool: zen:planner
+   model: "gemini-2.5-pro"
+   step: "Break down [Project Name] PRD into detailed phase plan with task dependencies"
+   working_directory: "/absolute/path/to/project"
+   # Reference this completed PRD in your prompt
+   ```
+8. ✅ Deploy multi-agent team if 3+ features (see [Agent Deployment](./agent-deployment.md))
+9. ✅ Create ADRs for any major technical decisions using tool chain:
+   - `challenge` → `consensus` → (optional) `clink` → Create ADR
+   - See [Tool Chaining Patterns](./tool-chaining-patterns.md) Pattern 10
+
+**During Development**:
+10. ✅ Reference PRD throughout development
+11. ✅ Update as requirements evolve (version control)
+12. ✅ Create ADRs for new major decisions
+13. ✅ Run zen `precommit` before EVERY commit (MANDATORY)
+14. ✅ Capture screenshot evidence for every feature
+15. ✅ Run mandatory phase gates at end of each phase
+
+**Quality Checklist (Every Phase)**:
+- [ ] zen `precommit` passed for all commits
+- [ ] Screenshot evidence for all features
+- [ ] Tests ≥70% coverage
+- [ ] Build passes
+- [ ] Phase gates passed (analyze + refactor + analyze)
+
+**Remember**:
+- A well-defined PRD enables effective planning with zen `planner`
+- Following mandatory requirements prevents rework and failed quality gates
+- Multi-agent teams are REQUIRED for projects with 3+ features
+- Phase gates are MANDATORY - no exceptions!
