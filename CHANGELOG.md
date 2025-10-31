@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.0] - 2025-01-31
+
+### Added
+- **macOS Development Support**: Comprehensive development guidelines for macOS applications, mirroring iOS standards
+  - New docs/mac-development.md guide (846 lines) with mandatory rules for SwiftUI, SwiftData, @Observable
+  - Target: macOS 14.0+ (Sonoma) minimum
+  - macOS-specific patterns: NavigationSplitView, window management, menu bar integration
+  - Same 5-agent team structure as iOS
+  - Same mandatory tech stack: SwiftUI, SwiftData, @Observable, async/await
+  - Updated claude.md to include iOS/macOS Development Standards (lines 42-63)
+  - Updated README.md to list macOS as fully supported platform
+  - Updated docs/PRD.md with macOS platform-specific guidelines
+
+### Why v3.2
+macOS applications follow the same modern Swift development practices as iOS (SwiftUI, SwiftData, Observation framework). By adding macOS as a parallel platform option with identical mandatory standards, the workflow now supports both Apple platforms without code bloat or iOS workflow degradation. Uses consistent "iOS/macOS" pattern throughout documentation.
+
+---
+
 ## [3.1.0] - 2025-01-30
 
 ### Added

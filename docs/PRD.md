@@ -17,7 +17,7 @@
 **MANDATORY CHECKLIST**:
 - [ ] Read [claude.md - MANDATORY REQUIREMENTS](../claude.md#⚠️-mandatory-requirements-read-first) section
 - [ ] Understand multi-agent deployment criteria (3+ features = deploy team)
-- [ ] Know platform-specific mandatory tech standards (if iOS: SwiftUI, SwiftData, @Observable only)
+- [ ] Know platform-specific mandatory tech standards (iOS/macOS: SwiftUI, SwiftData, @Observable only)
 - [ ] Understand quality gates (precommit, phase gates, screenshot evidence)
 
 ### How This PRD Integrates with Workflow
@@ -277,6 +277,15 @@
 - Use native SwiftUI components
 - Dark mode support: [Yes/No]
 
+**macOS** (if applicable):
+- ⚠️ **MANDATORY**: Follow [macOS Development Standards](./mac-development.md) - ZERO TOLERANCE
+  - **MUST USE**: SwiftUI, SwiftData, @Observable, async/await, NavigationSplitView/NavigationStack
+  - **FORBIDDEN**: AppKit (except when SwiftUI lacks APIs), Core Data, Combine/@Published/@ObservableObject/@StateObject
+  - Target: macOS 14.0+ (Sonoma) minimum
+- Follow macOS Human Interface Guidelines
+- Use native SwiftUI components
+- Dark mode support: [Yes/No]
+
 **Web** (if applicable):
 - Responsive design: Mobile, tablet, desktop
 - Browser support: [List browsers and versions]
@@ -299,16 +308,18 @@
 
 ### Platform & Technology
 
-**Primary Platform**: [iOS/Web/Android/etc.]
+**Primary Platform**: [iOS/macOS/Web/Android/etc.]
 **Minimum Versions**: [Specify]
 
 **Technology Stack**:
 - Frontend: [Framework/Language]
   - ⚠️ **iOS Projects**: See mandatory tech stack in [iOS Development](./ios-development.md)
-  - **REQUIRED**: SwiftUI, SwiftData, @Observable (iOS 17+)
+    - **REQUIRED**: SwiftUI, SwiftData, @Observable (iOS 17+)
+  - ⚠️ **macOS Projects**: See mandatory tech stack in [macOS Development](./mac-development.md)
+    - **REQUIRED**: SwiftUI, SwiftData, @Observable (macOS 14.0+)
 - Backend: [If applicable]
 - Database: [Technology]
-  - **iOS**: SwiftData only (Core Data forbidden)
+  - **iOS/macOS**: SwiftData only (Core Data forbidden)
 - APIs: [Third-party services]
 
 **⚠️ Major Technical Decisions**:
@@ -518,8 +529,9 @@
 2. ✅ Copy this template for your project
 3. ✅ Fill in ALL sections completely
 4. ✅ For iOS: Verify tech stack follows [iOS Development Standards](./ios-development.md)
-5. ✅ Review with team and stakeholders
-6. ✅ Get formal approval (sign-off section)
+5. ✅ For macOS: Verify tech stack follows [macOS Development Standards](./mac-development.md)
+6. ✅ Review with team and stakeholders
+7. ✅ Get formal approval (sign-off section)
 
 **Phase 0 - Project Planning**:
 7. ✅ Use zen `planner` with completed PRD:

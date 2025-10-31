@@ -1,7 +1,7 @@
 # Claude Dev Workflow
 
-**Version**: 3.1.0
-**Last Updated**: 2025-01-30
+**Version**: 3.2.0
+**Last Updated**: 2025-01-31
 **License**: MIT
 
 ---
@@ -132,6 +132,11 @@ claude-dev-workflow/
 - Example project (coming)
 - 5-agent team structure
 
+**macOS Applications** (Swift, SwiftUI, SwiftData)
+- Mandatory technical standards
+- Same 5-agent team structure as iOS
+- Deployment script (coming)
+
 ### 🚧 Coming Soon
 
 - **Android Applications** (Kotlin, Jetpack Compose) - v3.2
@@ -142,7 +147,7 @@ claude-dev-workflow/
 
 ## 🤖 Multi-Agent Teams
 
-### iOS Development Team (5 Agents)
+### iOS/macOS Development Team (5 Agents)
 
 ```
 Coordinator Agent
@@ -157,6 +162,8 @@ Feature Agents (2x)
 Testing Agent
 └── Quality verification
 ```
+
+**Note**: iOS and macOS use the same team structure
 
 **When to Deploy Teams**: See decision tree in [agent-deployment.md](./docs/agent-deployment.md)
 
@@ -175,7 +182,7 @@ Coordinator + Backend + Frontend + UI + Database + Testing
 **Before starting ANY work, you MUST:**
 
 1. **Deploy Multi-Agent Team** (for projects with 3+ features)
-2. **Follow Platform Standards** (iOS: SwiftUI, SwiftData, @Observable only)
+2. **Follow Platform Standards** (iOS/macOS: SwiftUI, SwiftData, @Observable only)
 3. **Pass Quality Gates** (zen precommit, screenshots, tests, builds)
 4. **Run Phase Gates** (analyze + refactor + analyze at every phase end)
 
@@ -244,6 +251,7 @@ tracking/screenshots/
 - [ ] **Read [claude.md](./claude.md) completely** (includes MANDATORY requirements)
 - [ ] Review [agent-deployment.md](./docs/agent-deployment.md) decision tree
 - [ ] For iOS: Read [ios-development.md](./docs/ios-development.md) mandatory rules
+- [ ] For macOS: Read [mac-development.md](./docs/mac-development.md) mandatory rules
 - [ ] Run deployment script for your platform
 - [ ] Deploy multi-agent team (if applicable)
 - [ ] Create PRD using [PRD template](./docs/PRD.md)
@@ -305,11 +313,12 @@ We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guideline
 
 ## 📊 Version History
 
-**Current Version**: v3.1.0 (January 30, 2025)
+**Current Version**: v3.2.0 (January 31, 2025)
 
 **Latest Changes**:
-- ✅ **clink Tool Integration** - External AI perspectives for critical scenarios
-- ✅ 3 new tool chaining patterns for complex bugs, security reviews, architectural decisions
+- ✅ **macOS Development Support** - Complete guidelines for macOS applications
+- ✅ Same mandatory tech stack as iOS (SwiftUI, SwiftData, @Observable)
+- ✅ Platform-agnostic team structure works for both iOS and macOS
 
 **See**: [CHANGELOG.md](./CHANGELOG.md) for complete version history
 
@@ -340,7 +349,7 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 
 1. **📖 Read [claude.md](./claude.md) first** - MANDATORY requirements at the top
 2. **🤖 Deploy teams for 3+ feature projects** - Use decision tree
-3. **📱 iOS: Follow mandatory tech stack** - SwiftUI, SwiftData, @Observable only
+3. **📱 iOS/macOS: Follow mandatory tech stack** - SwiftUI, SwiftData, @Observable only
 4. **✅ Pass all quality gates** - precommit before every commit
 5. **🚦 Run phase gates** - analyze + refactor + analyze at every phase end
 6. **📸 Screenshot everything** - Nothing complete without proof

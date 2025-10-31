@@ -39,26 +39,28 @@
 
 ---
 
-### 2. iOS Development Standards - REQUIRED
+### 2. iOS/macOS Development Standards - REQUIRED
 
-**WHEN**: Any iOS development task
+**WHEN**: Any iOS or macOS development task
 **COMPLIANCE**: These rules are NON-NEGOTIABLE project requirements
 
 ✅ **MANDATORY - You MUST Use:**
-- **SwiftUI** (exclusively for UI) - target iOS 17.0+
+- **SwiftUI** (exclusively for UI) - target iOS 17.0+ / macOS 14.0+
 - **SwiftData** (for data persistence)
 - **@Observable** (for state management)
 - **async/await** (for asynchronous operations)
-- **NavigationStack** (for navigation)
+- **NavigationStack** (iOS) or **NavigationSplitView** (macOS) for navigation
 
 ❌ **FORBIDDEN - You MUST NOT Use:**
-- **UIKit** (except when SwiftUI genuinely lacks required APIs)
+- **UIKit/AppKit** (except when SwiftUI genuinely lacks required APIs)
 - **Core Data** (SwiftData only)
 - **Combine** / `@Published` / `@ObservableObject` / `@StateObject` (use @Observable)
 - **Completion handlers/closures** for async operations (use async/await)
-- **NavigationView** (deprecated, use NavigationStack)
+- **NavigationView** (deprecated, use NavigationStack or NavigationSplitView)
 
-**📖 BEFORE WRITING ANY iOS CODE**: Read [iOS Development Guidelines](./docs/ios-development.md) in full
+**📖 BEFORE WRITING CODE**: Read platform guidelines in full
+- **iOS**: [iOS Development Guidelines](./docs/ios-development.md)
+- **macOS**: [macOS Development Guidelines](./docs/mac-development.md)
 
 ❌ **VIOLATION**: Using UIKit, Core Data, or Combine in new code
 ✅ **COMPLIANCE**: Following the mandatory tech stack above
@@ -128,6 +130,7 @@ This documentation provides a complete, phase-based development workflow for AI 
 | [Project Management](./docs/project-management.md) | Phase-based planning and execution | Planning, tracking, delivery |
 | [Session Management](./docs/session-management.md) | Context preservation and handoffs | Every session, agent transitions |
 | [iOS Development](./docs/ios-development.md) | iOS technical standards (Swift/SwiftUI) | All iOS development tasks |
+| [macOS Development](./docs/mac-development.md) | macOS technical standards (Swift/SwiftUI) | All macOS development tasks |
 | [Testing Guidelines](./docs/testing-guidelines.md) | Testing requirements and quality gates | Feature completion, QA |
 | [Zen Tools Guide](./docs/zen-tools-guide.md) | Leveraging Zen MCP tools effectively | Throughout all phases |
 | **[Tool Chaining Patterns](./docs/tool-chaining-patterns.md)** | **Effective tool sequences for common scenarios** | **Complex tasks, decisions, debugging** |
@@ -402,12 +405,13 @@ graph TD
 
 ## 🤖 Agent Team Structures
 
-### iOS Development Team (5 agents)
+### iOS/macOS Development Team (5 agents)
 
 ```yaml
-Team: ios-development
+Team: ios-development or macos-development
 Size: 5 agents
 Mode: Parallel with coordination
+Applies to: iOS and macOS (same structure)
 
 Roles:
   - Coordinator Agent (1)
@@ -415,22 +419,24 @@ Roles:
     - Ensures quality gates
     - Maintains session continuity
     - Uses: planner, consensus, challenge
-    
+
   - Architecture Agent (1)
     - SwiftUI architecture
     - SwiftData models
     - Uses: analyze, thinkdeep, apilookup
-    
+
   - Feature Development Agents (2)
     - Parallel feature implementation
     - UI and logic
     - Uses: codereview, debug, refactor
-    
+
   - Testing Agent (1)
     - Unit/UI tests
     - Quality verification
     - Uses: precommit, debug
 ```
+
+**Note**: macOS applications use the same team structure as iOS. See [macOS Development](./docs/mac-development.md) for platform-specific standards.
 
 **See**: [Agent Deployment Guide](./docs/agent-deployment.md) for full details
 
