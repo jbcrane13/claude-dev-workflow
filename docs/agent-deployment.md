@@ -11,6 +11,79 @@ This document defines multi-agent team structures for parallel development with 
 
 ---
 
+## ⚠️ WHEN TO DEPLOY AGENT TEAMS (Decision Tree)
+
+**Use this decision tree to determine if you need a multi-agent team or can work solo.**
+
+### Decision Point 1: Project Type & Complexity
+
+❓ **Is this an iOS/Android/Web application with 3+ features?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM** (continue to Decision Point 2)
+- **NO** → Proceed to Decision Point 2
+
+❓ **Is this a simple 1-2 file change or bug fix?**
+- **YES** → ✅ Single agent acceptable
+- **NO** → Continue to Decision Point 2
+
+### Decision Point 2: Scope of Work
+
+❓ **Does this work involve multiple subsystems or files (5+ files)?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM**
+- **NO** → Continue to Decision Point 3
+
+❓ **Will this work span multiple days or sessions?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM** (for continuity)
+- **NO** → Continue to Decision Point 3
+
+### Decision Point 3: Technical Complexity
+
+❓ **Is this a major architectural change or refactoring?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM**
+- **NO** → Continue to Decision Point 4
+
+❓ **Does this require specialized knowledge (data models AND UI AND business logic)?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM**
+- **NO** → Single agent may be acceptable
+
+### Decision Point 4: Quality Requirements
+
+❓ **Is this production code requiring comprehensive testing?**
+- **YES** → ✅ **DEPLOY MULTI-AGENT TEAM** (Testing Agent required)
+- **NO** → Single agent may be acceptable
+
+❓ **Is this a prototype or throwaway code?**
+- **YES** → ✅ Single agent acceptable
+- **NO** → ✅ **DEPLOY MULTI-AGENT TEAM**
+
+---
+
+### 🎯 DEFAULT RULE
+
+**If uncertain, deploy the team.** Multi-agent coordination prevents:
+- Missed requirements
+- Inconsistent architecture
+- Inadequate testing
+- Poor quality code
+- Technical debt accumulation
+
+**Better to have coordination you don't fully need than miss critical issues.**
+
+---
+
+### 📋 Quick Team Selection Guide
+
+Once you've decided to deploy a team, select the appropriate team:
+
+| Project Type | Team Size | Use When |
+|--------------|-----------|----------|
+| **iOS Application** | 5 agents | Building iOS apps with SwiftUI/SwiftData |
+| **Web Application** | 6 agents | Building full-stack web applications |
+| **General Software** | 4-5 agents | Other software projects (adaptable) |
+
+**See detailed team structures below** ↓
+
+---
+
 ## Table of Contents
 
 1. [Core Principles](#core-principles)
