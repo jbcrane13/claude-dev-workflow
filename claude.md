@@ -1,7 +1,7 @@
 # AI Agent Development Workflow - Master Index
 
-**Version**: 3.0
-**Last Updated**: 2025-01-30  
+**Version**: 3.1.0
+**Last Updated**: 2025-01-30
 **Workflow Type**: Phase-Based Collaborative Development
 
 ---
@@ -523,12 +523,14 @@ Phase N: Polish & Launch
 | Phase | Primary Zen Tools | Purpose |
 |-------|------------------|---------|
 | **Planning** | `planner`, `thinkdeep` | Break down project, identify dependencies |
-| **Architecture** | `analyze`, `thinkdeep`, `consensus` | Design decisions, pattern selection |
-| **Development** | `chat`, `clink`, `apilookup` | Implementation support, API docs |
-| **Code Review** | `codereview`, `challenge` | Quality assurance, critical review |
-| **Debugging** | `debug`, `analyze` | Issue resolution, root cause analysis |
+| **Architecture** | `analyze`, `thinkdeep`, `consensus`, (`clink`) | Design decisions, pattern selection, (external validation) |
+| **Development** | `chat`, `apilookup` | Implementation support, API docs |
+| **Code Review** | `codereview`, `challenge`, (`clink`) | Quality assurance, critical review, (external perspective) |
+| **Debugging** | `debug`, `analyze`, (`clink`) | Issue resolution, root cause analysis, (external diagnosis) |
 | **Pre-Commit** | `precommit`, `codereview` | Final verification before commit |
 | **Refactoring** | `refactor`, `consensus` | Code improvement, team alignment |
+
+**Note**: `clink` (in parentheses) is tactical/optional - use for critical scenarios requiring external AI perspective from different model families.
 
 **See**: [Zen Tools Guide](./docs/zen-tools-guide.md) for detailed usage patterns
 

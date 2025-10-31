@@ -557,6 +557,295 @@ Location: tracking/releases/release-X.X.X.md
 
 ---
 
+### Pattern 8: Complex Bug with External Validation
+
+**When to Use**:
+- Internal tools (debug, thinkdeep) haven't found root cause
+- Intermittent bug that's hard to reproduce
+- Suspicion that diagnosis might be wrong
+- Confidence level < "high" after analysis
+
+**Tool Chain**:
+```yaml
+Step 1: Initial Investigation
+Tool: debug
+Input: Error messages, reproduction steps, observations
+Purpose: Form initial hypothesis
+Save: continuation_id, hypothesis, confidence level
+
+Step 2: Deep Analysis
+Tool: thinkdeep
+continuation_id: [from debug]
+Step: "Systematically investigate [hypothesis from debug]"
+Purpose: Test hypothesis, find root cause
+Save: continuation_id, findings, confidence level
+
+If confidence still < "high" after thinkdeep:
+
+Step 3: External Perspective
+Tool: clink
+cli_name: "gemini"  # Different AI family
+role: "default"
+continuation_id: [from thinkdeep]
+prompt: "We diagnosed this issue as [hypothesis]. Review our analysis:
+- Challenge our diagnosis
+- Suggest alternative root causes we might have missed
+- Identify blind spots in our investigation"
+absolute_file_paths:
+  - [relevant source files]
+Purpose: Get fresh perspective from different AI architecture
+Save: External insights, alternative theories
+
+Step 4: Validate Root Cause
+Tool: challenge
+Input: "Final diagnosis is [refined hypothesis]"
+Purpose: Final validation before implementing fix
+Save: validation notes
+
+Step 5: Implement Fix
+Implement solution
+Add regression test
+
+Step 6: Verify Fix
+Tool: precommit
+Purpose: Final validation before commit
+```
+
+**Example**:
+```markdown
+Bug: Intermittent crash when navigating between views
+
+1. debug (abc123):
+   → Hypothesis: Memory leak in view controller
+   → Confidence: medium
+   → Files checked: NavigationController.swift, ViewManager.swift
+
+2. thinkdeep (abc123):
+   → Investigated memory management
+   → Found potential retain cycle
+   → Confidence: medium (still uncertain)
+
+3. clink → gemini (default):
+   → continuation_id: abc123
+   → External insight: "Check SwiftUI view lifecycle, not just memory"
+   → Alternative theory: State updates during view transition
+   → Identified: Missing .task modifier cleanup
+
+4. challenge: "Root cause is missing .task cancellation"
+   → Validated: Correct diagnosis
+
+5. Implement: Add .task cancellation on view disappear
+6. Add test for navigation cleanup
+7. precommit: PASSED ✅
+8. Bug resolved with external perspective catching blind spot
+```
+
+**Key Value**: External AI catches blind spots when internal tools plateau at "medium" confidence.
+
+---
+
+### Pattern 9: Security-Critical Code Review
+
+**When to Use**:
+- Authentication/authorization code
+- Payment processing logic
+- Data encryption/decryption
+- API security implementations
+- Privacy-sensitive data handling
+
+**Tool Chain**:
+```yaml
+Step 1: Internal Security Review
+Tool: codereview
+Parameters:
+  review_type: "security"
+Input: Security-critical files
+Purpose: Initial security analysis
+Save: continuation_id, security findings
+
+Step 2: External Security Review
+Tool: clink
+cli_name: "codex"  # Code-specialized external AI
+role: "codereviewer"
+continuation_id: [from codereview]
+prompt: "Security review of [component]:
+- Identify vulnerabilities (OWASP Top 10)
+- Check for common security anti-patterns
+- Validate authentication/authorization logic
+- Review data validation and sanitization
+- Check for injection vulnerabilities"
+absolute_file_paths:
+  - [security-critical files]
+Purpose: Independent security audit from different AI
+Save: External security findings
+
+Step 3: Threat Modeling
+Tool: thinkdeep
+continuation_id: [from clink]
+Step: "Threat model for [component] considering both reviews"
+Purpose: Systematic threat analysis
+Save: continuation_id, threat scenarios
+
+Step 4: Address Findings
+Fix all CRITICAL and HIGH issues
+Document risk acceptance for lower-priority issues
+
+Step 5: Verify Security Improvements
+Tool: codereview
+Parameters:
+  review_type: "security"
+Purpose: Verify all issues resolved
+Compare: Before vs After security posture
+```
+
+**Example**:
+```markdown
+Component: User Authentication System
+
+1. codereview (def456) - security:
+   → CRITICAL: Password stored in plain text in logs
+   → HIGH: No rate limiting on login attempts
+   → MEDIUM: JWT expiration too long (7 days)
+
+2. clink → codex (codereviewer):
+   → continuation_id: def456
+   → Additional CRITICAL: SQL injection in username field
+   → Additional HIGH: Session fixation vulnerability
+   → Note: JWT library version has known CVE
+
+3. thinkdeep (def456) - threat modeling:
+   → Attack scenario: Brute force + session hijacking
+   → Impact assessment: Account takeover possible
+   → Priority: Fix all CRITICAL immediately
+
+4. Implement fixes:
+   → Remove password from logs
+   → Add parameterized queries (fix SQL injection)
+   → Implement rate limiting (5 attempts/15 min)
+   → Rotate session on login (fix session fixation)
+   → Update JWT library, reduce expiration to 1 day
+
+5. codereview (ghi789) - verify:
+   → All CRITICAL/HIGH issues resolved ✅
+   → Security posture: 65/100 → 92/100
+
+6. Document in ADR-NNN-auth-security-hardening.md
+   → Include both continuation IDs
+   → List all vulnerabilities found/fixed
+```
+
+**Key Value**: External code-specialized AI finds vulnerabilities internal review missed (SQL injection, session fixation).
+
+---
+
+### Pattern 10: Architectural Decision with External Challenge
+
+**When to Use**:
+- High-stakes architectural decisions
+- Choosing between major frameworks
+- Data architecture (database, state management)
+- API design approaches
+- Decisions with long-term implications
+
+**Tool Chain**:
+```yaml
+Step 1: Question the Default Choice
+Tool: challenge
+Input: "We should use [proposed approach] for [decision]"
+Purpose: Identify hidden assumptions
+Save: Assumptions identified, edge cases
+
+Step 2: Multi-Model Internal Analysis
+Tool: consensus
+Models:
+  - model: "gemini-2.5-pro"
+    stance: "for"
+    stance_prompt: "Argue for [proposed approach]"
+  - model: "gpt-5-pro"
+    stance: "against"
+    stance_prompt: "Argue for [alternative]"
+  - model: "claude-sonnet-4-5"
+    stance: "neutral"
+    stance_prompt: "Balanced analysis"
+Purpose: Internal multi-model debate
+Save: continuation_id, all perspectives
+
+Step 3: External Independent Review
+Tool: clink
+cli_name: "gemini"  # or "claude" (different from consensus models)
+role: "planner"
+continuation_id: [from consensus]
+prompt: "Independent review of architectural decision:
+Context: [decision background]
+Internal consensus: [summary of consensus]
+Challenge: Review for blind spots, biases, missed alternatives
+Question: Are we missing critical considerations?"
+Purpose: External validation from completely different AI family
+Save: External insights, blind spots identified
+
+Step 4: Deep Investigation (if external review raises concerns)
+Tool: thinkdeep
+continuation_id: [from clink]
+Step: "Investigate [concern raised by external review]"
+Purpose: Systematic exploration of flagged issues
+Save: continuation_id, investigation findings
+
+Step 5: Document Decision
+Tool: Manual - Create ADR
+Content:
+  - All continuation IDs (challenge, consensus, clink, thinkdeep)
+  - Internal consensus summary
+  - External review insights
+  - Decision with full rationale
+  - Trade-offs accepted
+  - Alternatives considered and rejected
+Location: docs/adr/ADR-NNN-title.md
+```
+
+**Example**:
+```markdown
+Decision: State Management Approach for iOS App
+
+1. challenge: "We should use @Observable for state"
+   → Assumption: Team is comfortable with iOS 17+ requirement
+   → Edge case: Complex state synchronization needs?
+
+2. consensus (jkl012):
+   → gemini-2.5-pro (for @Observable):
+     - Simple, type-safe, modern
+     - Native SwiftUI integration
+   → gpt-5-pro (for TCA):
+     - Better for complex state
+     - Testability, time-travel debugging
+   → claude (neutral):
+     - @Observable sufficient for MOST apps
+     - TCA overkill unless very complex
+
+3. clink → gemini (planner):
+   → continuation_id: jkl012
+   → External insight: "Consider team size and turnover"
+   → Blind spot identified: "What's the learning curve difference?"
+   → Additional consideration: "State debugging in production?"
+
+4. thinkdeep (jkl012):
+   → Investigated production debugging
+   → TCA provides better observability
+   → But: Team is 2 people, app is not complex
+   → Decision: @Observable is appropriate for this context
+
+5. ADR-003-swiftui-state-management.md:
+   → Continuation IDs: jkl012 (all tools)
+   → Decision: Use @Observable
+   → Rationale: Simple app, small team, iOS 17+ acceptable
+   → Trade-off accepted: Less debugging tooling vs. simplicity
+   → Rejected: TCA (overkill for current complexity)
+   → Reconsider: If team grows >5 or state becomes complex
+```
+
+**Key Value**: External review prevents groupthink, catches considerations internal consensus missed (team turnover, learning curve).
+
+---
+
 ## Platform-Specific Patterns
 
 ### iOS Development

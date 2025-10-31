@@ -26,7 +26,7 @@ This guide explains how to effectively use Zen MCP tools throughout the developm
 | `challenge` | Question assumptions | Critical decisions | Coordinator |
 | `apilookup` | API documentation, best practices | During development | All |
 | `chat` | General assistance, continuity | Throughout | All |
-| `clink` | Link to external AI CLIs | Special cases | Coordinator |
+| `clink` | External AI perspective (different model families) | Critical decisions, complex bugs | All (tactical use) |
 
 ---
 
@@ -436,6 +436,94 @@ Parameters:
 - Provide relevant files
 - Ask specific questions
 - Save continuation_id for next time
+
+---
+
+### `clink` - External AI Perspective
+
+**When to Use**:
+- Critical/security-sensitive code review
+- Complex bugs unresolved by internal tools
+- High-stakes architectural decisions
+- When confidence is < "high" after internal analysis
+- Need fresh perspective from different AI family
+
+**⚠️ IMPORTANT**: `clink` provides value that `consensus` does NOT:
+- **consensus**: Multi-model debate within zen ecosystem (for/against/neutral)
+- **clink**: External AI perspective from completely different system/training
+
+**How to Use**:
+```yaml
+Tool: zen:clink
+Parameters:
+  cli_name: "gemini"  # or "codex", "claude"
+  role: "codereviewer"  # or "default", "planner"
+  prompt: "Review this authentication code for security vulnerabilities"
+  continuation_id: "previous_analysis_id"  # For context continuity
+  absolute_file_paths:
+    - "/path/to/Sources/Auth/AuthManager.swift"
+```
+
+**Available CLI Clients**:
+- **gemini**: Google's Gemini models (different training/perspective)
+- **codex**: OpenAI's code-specialized models
+- **claude**: Anthropic's Claude models (different architecture)
+
+**Available Roles**:
+- **codereviewer**: Optimized for finding bugs, security issues, code quality
+- **planner**: Optimized for architecture, task breakdown, dependencies
+- **default**: General-purpose assistance
+
+**Example Use Cases**:
+
+1. **External Code Review** (Security-Critical):
+```yaml
+Tool: zen:clink
+cli_name: "codex"
+role: "codereviewer"
+prompt: "Review this payment processing code for security vulnerabilities and edge cases"
+absolute_file_paths:
+  - "/path/to/Sources/Payment/PaymentProcessor.swift"
+```
+
+2. **Independent Bug Analysis**:
+```yaml
+Tool: zen:clink
+cli_name: "gemini"
+role: "default"
+prompt: "We diagnosed this crash as a race condition in task deletion. Challenge our analysis and suggest alternative root causes."
+continuation_id: "from_previous_debug"
+absolute_file_paths:
+  - "/path/to/Sources/Stores/TaskStore.swift"
+```
+
+3. **Architecture Validation**:
+```yaml
+Tool: zen:clink
+cli_name: "claude"
+role: "planner"
+prompt: "We chose SwiftData over Core Data for this project. Review our decision for blind spots we might have missed."
+continuation_id: "from_consensus_analysis"
+```
+
+**Best Practices**:
+- Use AFTER internal tools (debug, codereview, consensus)
+- Provide continuation_id for context
+- Be specific about what perspective you need
+- Document external insights in ADRs
+- Don't overuse - reserve for critical scenarios
+
+**When NOT to Use**:
+- ❌ Routine code review (use zen `codereview`)
+- ❌ Simple questions (use zen `chat`)
+- ❌ First-pass debugging (use zen `debug`)
+- ❌ Multi-model consensus (use zen `consensus`)
+
+**Key Difference**:
+```
+Internal: debug → thinkdeep → consensus (all same ecosystem)
+External: debug → thinkdeep → clink (break out for fresh perspective)
+```
 
 ---
 

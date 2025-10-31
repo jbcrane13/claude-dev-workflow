@@ -1,6 +1,6 @@
 # Claude Dev Workflow
 
-**Version**: 3.0
+**Version**: 3.1.0
 **Last Updated**: 2025-01-30
 **License**: MIT
 
@@ -74,9 +74,9 @@ cat docs/ios-development.md  # iOS mandatory rules at top
 ### For Other Project Types
 
 Coming soon:
-- Android deployment script (v3.1)
-- Web application deployment script (v3.2)
-- General software deployment script (v3.3)
+- Android deployment script (v3.2)
+- Web application deployment script (v3.3)
+- General software deployment script (v3.4)
 
 ---
 
@@ -134,9 +134,9 @@ claude-dev-workflow/
 
 ### 🚧 Coming Soon
 
-- **Android Applications** (Kotlin, Jetpack Compose) - v3.1
-- **Web Applications** (React, Vue, Next.js) - v3.2
-- **Backend Services** (Node.js, Python, Go) - v3.3
+- **Android Applications** (Kotlin, Jetpack Compose) - v3.2
+- **Web Applications** (React, Vue, Next.js) - v3.3
+- **Backend Services** (Node.js, Python, Go) - v3.4
 
 ---
 
@@ -305,41 +305,13 @@ We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guideline
 
 ## 📊 Version History
 
-### v3.0 (Current) - Documentation Clarity & Enforcement 🎉
+**Current Version**: v3.1.0 (January 30, 2025)
 
-**Released**: January 30, 2025
+**Latest Changes**:
+- ✅ **clink Tool Integration** - External AI perspectives for critical scenarios
+- ✅ 3 new tool chaining patterns for complex bugs, security reviews, architectural decisions
 
-**Major Changes:**
-- ✅ **MANDATORY REQUIREMENTS** section added to claude.md (cannot be missed)
-- ✅ **Decision tree** added to agent-deployment.md (clear when to spawn teams)
-- ✅ **Mandatory rules** added to ios-development.md (zero tolerance for violations)
-- ✅ **51% documentation reduction** (15,476 → ~7,500 lines)
-- ✅ **Removed 4 redundant files** (consolidated overlapping content)
-- ✅ **Clear enforcement hierarchy** (MUST vs SHOULD vs OPTIONAL)
-
-**Why v3.0:**
-Agents were missing critical instructions (team spawning, iOS guidelines) because they were buried in 15K+ lines of documentation. v3.0 puts mandatory requirements front and center with clear enforcement.
-
-### v2.0 - Proactive Quality System
-
-**Released**: January 20, 2025
-
-- Phase gates (analyze + refactor + analyze)
-- Architecture Decision Records (ADRs)
-- Technical debt monitoring
-- Performance baselines
-- Tool chaining patterns
-- Knowledge preservation
-
-### v1.0 - Initial Release
-
-**Released**: January 20, 2025
-
-- Complete iOS workflow
-- Multi-agent coordination
-- Phase-based development
-- Quality gates
-- Zen MCP integration
+**See**: [CHANGELOG.md](./CHANGELOG.md) for complete version history
 
 ---
 
