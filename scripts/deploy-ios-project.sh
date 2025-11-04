@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # iOS Project Deployment Script
-# Claude Dev Workflow v2.0
+# Claude Dev Workflow v3.2.0
 # 
 # This script creates a new iOS project with the complete Claude Dev Workflow structure
 #
@@ -149,14 +149,11 @@ cp "$WORKFLOW_ROOT/docs/adr/"*.md "$PROJECT_PATH/docs/adr/"
 
 echo "Copying workflow guides to project root..."
 cp "$WORKFLOW_ROOT/claude.md" "$PROJECT_PATH/claude.md"
-cp "$WORKFLOW_ROOT/CLAUDE.md" "$PROJECT_PATH/CLAUDE.md"
-cp "$WORKFLOW_ROOT/WORKFLOW-IMPROVEMENTS-SUMMARY.md" "$PROJECT_PATH/WORKFLOW-IMPROVEMENTS-SUMMARY.md"
-cp "$WORKFLOW_ROOT/WORKFLOW-ENFORCEMENT-IMPLEMENTATION-GUIDE.md" "$PROJECT_PATH/WORKFLOW-ENFORCEMENT-IMPLEMENTATION-GUIDE.md"
 
 echo "Copying .gitignore..."
 cp "$WORKFLOW_ROOT/templates/ios/.gitignore" "$PROJECT_PATH/.gitignore"
 
-print_success "Workflow files copied (including proactive quality workflows)"
+print_success "Workflow files copied"
 
 # Create Xcode project
 print_header "Creating Xcode Project"
@@ -550,7 +547,7 @@ Follow the Claude Dev Workflow:
 
 ---
 
-**Built with Claude Dev Workflow v2.0**
+**Built with Claude Dev Workflow v3.2.0**
 EOFREADME
 
 # Replace placeholder in README
@@ -563,11 +560,11 @@ print_header "Initializing Git Repository"
 
 git init
 git add .
-git commit -m "Initial commit: ${PROJECT_NAME} created with Claude Dev Workflow v2.0
+git commit -m "Initial commit: ${PROJECT_NAME} created with Claude Dev Workflow v3.2.0
 
 - Project structure created
 - Workflow files initialized
-- Documentation added
+- Documentation added (includes iOS/macOS standards)
 - Ready for Phase 0 planning"
 
 print_success "Git repository initialized"
@@ -1036,12 +1033,12 @@ print_info "   See docs/quality-gates.md"
 print_info "   Nothing complete without: Build + Tests + Screenshots"
 echo ""
 
-echo "⚡ NEW: Proactive Quality Workflows"
+echo "⚡ Quality System Features"
 print_info "   Phase Gates: Run analyze + refactor + analyze (perf) at EVERY phase end"
 print_info "   ADRs: Document major decisions with challenge + consensus"
 print_info "   Technical Debt: Track trends in tracking/technical-debt-log.md"
 print_info "   Performance: Monitor in tracking/performance-baseline.md"
-print_info "   See: WORKFLOW-IMPROVEMENTS-SUMMARY.md for complete guide"
+print_info "   See: claude.md for complete workflow guide"
 echo ""
 
 echo "📋 Update Tracking Files"
