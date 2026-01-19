@@ -1,0 +1,75 @@
+{
+  "name": "quality-engineering-workflow",
+  "version": "3.1.0",
+  "description": "Comprehensive quality engineering system focusing on quality gates, phase gates, testing, technical debt tracking, performance monitoring, and proactive quality practices. Prevents 50-70% of bugs through systematic validation.",
+  "author": "Claude Dev Workflow Project",
+  "tags": [
+    "quality",
+    "testing",
+    "quality-gates",
+    "phase-gates",
+    "precommit",
+    "code-review",
+    "technical-debt",
+    "performance",
+    "adr",
+    "zen-tools",
+    "proactive-quality"
+  ],
+  "use_cases": [
+    "Enforcing quality gates before task completion",
+    "Running mandatory phase gates at phase boundaries",
+    "Implementing pre-commit validation workflow",
+    "Establishing comprehensive testing strategy",
+    "Tracking technical debt trends across phases",
+    "Monitoring performance baselines and regressions",
+    "Creating Architecture Decision Records (ADRs)",
+    "Using Zen MCP tools for quality assurance",
+    "Preventing bugs proactively"
+  ],
+  "platforms": [
+    "Platform-agnostic",
+    "iOS",
+    "macOS",
+    "Web",
+    "Backend"
+  ],
+  "mandatory_practices": {
+    "quality_gates": "Before ANY task completion",
+    "phase_gates": "At END of EVERY phase",
+    "precommit": "Before EVERY git commit",
+    "testing": "70% minimum coverage",
+    "screenshots": "Visual evidence required"
+  },
+  "zen_tools": [
+    "precommit (MANDATORY)",
+    "codereview",
+    "analyze",
+    "refactor",
+    "debug",
+    "challenge",
+    "consensus"
+  ],
+  "proactive_quality": {
+    "tier_1_mandatory": [
+      "Phase gates (analyze + refactor + analyze)",
+      "ADRs for major decisions",
+      "Technical debt monitoring"
+    ],
+    "tier_2_high_value": [
+      "Performance baselines",
+      "Tool chaining patterns",
+      "Knowledge base system"
+    ]
+  },
+  "expected_impact": "50-70% reduction in bugs reaching later phases",
+  "time_investment": {
+    "phase_gates": "15-20 minutes per phase",
+    "adrs": "20-30 minutes per major decision",
+    "precommit": "2-5 minutes per commit"
+  },
+  "requires": [
+    "Zen MCP server"
+  ],
+  "last_updated": "2025-01-30"
+}

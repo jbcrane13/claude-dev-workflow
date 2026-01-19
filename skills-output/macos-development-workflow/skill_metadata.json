@@ -1,0 +1,55 @@
+{
+  "name": "macos-development-workflow",
+  "version": "3.1.0",
+  "description": "macOS-specific development workflow focusing on SwiftUI for macOS, SwiftData, @Observable, NavigationSplitView, and desktop-first patterns. Enforces mandatory macOS 14.0+ standards with zero tolerance for legacy technologies (AppKit, Core Data, Combine).",
+  "author": "Claude Dev Workflow Project",
+  "tags": [
+    "macos",
+    "swiftui",
+    "swiftdata",
+    "observable",
+    "swift",
+    "async-await",
+    "navigation-split-view",
+    "desktop",
+    "apple",
+    "quality-gates",
+    "menu-bar",
+    "toolbar"
+  ],
+  "use_cases": [
+    "Building macOS 14.0+ applications",
+    "Enforcing SwiftUI/SwiftData standards for macOS",
+    "macOS-specific code review",
+    "SwiftUI for macOS architecture decisions",
+    "Desktop-first multi-pane app development",
+    "macOS quality gates and phase gates",
+    "macOS performance optimization",
+    "Toolbar and menu customization"
+  ],
+  "platforms": [
+    "macOS 14.0+ (Sonoma)"
+  ],
+  "mandatory_stack": {
+    "ui": "SwiftUI",
+    "data": "SwiftData",
+    "state": "@Observable",
+    "async": "async/await",
+    "navigation": "NavigationSplitView or NavigationStack"
+  },
+  "forbidden_technologies": [
+    "AppKit",
+    "Core Data",
+    "Combine",
+    "@Published",
+    "@ObservableObject",
+    "NavigationView",
+    "Completion handlers"
+  ],
+  "requires": [
+    "Xcode 15+",
+    "macOS 14.0+ target",
+    "Zen MCP server"
+  ],
+  "last_updated": "2025-01-30"
+}

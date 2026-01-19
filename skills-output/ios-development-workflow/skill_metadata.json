@@ -1,0 +1,52 @@
+{
+  "name": "ios-development-workflow",
+  "version": "3.1.0",
+  "description": "iOS-specific development workflow focusing on SwiftUI, SwiftData, @Observable, and modern Swift patterns. Enforces mandatory iOS 17.0+ standards with zero tolerance for legacy technologies (UIKit, Core Data, Combine).",
+  "author": "Claude Dev Workflow Project",
+  "tags": [
+    "ios",
+    "swiftui",
+    "swiftdata",
+    "observable",
+    "swift",
+    "async-await",
+    "navigation-stack",
+    "mobile",
+    "apple",
+    "quality-gates"
+  ],
+  "use_cases": [
+    "Building iOS 17.0+ applications",
+    "Enforcing SwiftUI/SwiftData standards",
+    "iOS-specific code review",
+    "SwiftUI architecture decisions",
+    "iOS quality gates and phase gates",
+    "iOS performance optimization",
+    "SwiftUI testing strategies"
+  ],
+  "platforms": [
+    "iOS 17.0+"
+  ],
+  "mandatory_stack": {
+    "ui": "SwiftUI",
+    "data": "SwiftData",
+    "state": "@Observable",
+    "async": "async/await",
+    "navigation": "NavigationStack"
+  },
+  "forbidden_technologies": [
+    "UIKit",
+    "Core Data",
+    "Combine",
+    "@Published",
+    "@ObservableObject",
+    "NavigationView",
+    "Completion handlers"
+  ],
+  "requires": [
+    "Xcode 15+",
+    "iOS 17.0+ target",
+    "Zen MCP server"
+  ],
+  "last_updated": "2025-01-30"
+}

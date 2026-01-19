@@ -1,0 +1,47 @@
+{
+  "name": "claude-dev-workflow",
+  "version": "3.1.0",
+  "description": "Comprehensive phase-based development workflow for AI agent teams building production-quality applications. Covers iOS/macOS/Web development with mandatory quality gates, phase gates, multi-agent coordination, and Zen MCP tool integration.",
+  "author": "Claude Dev Workflow Project",
+  "tags": [
+    "workflow",
+    "development",
+    "ios",
+    "macos",
+    "web",
+    "swiftui",
+    "swiftdata",
+    "quality-gates",
+    "phase-gates",
+    "multi-agent",
+    "zen-mcp",
+    "testing",
+    "architecture",
+    "adr",
+    "technical-debt",
+    "performance"
+  ],
+  "use_cases": [
+    "Starting new iOS/macOS/Web projects",
+    "Enforcing development standards",
+    "Managing multi-agent teams",
+    "Implementing quality gates",
+    "Running phase gates",
+    "Creating Architecture Decision Records",
+    "Tracking technical debt",
+    "Performance baseline monitoring",
+    "Session management and handoffs",
+    "Using Zen MCP tools effectively"
+  ],
+  "platforms": [
+    "iOS",
+    "macOS",
+    "Web",
+    "Multi-platform"
+  ],
+  "requires": [
+    "Zen MCP server",
+    "Multi-agent support"
+  ],
+  "last_updated": "2025-01-30"
+}
